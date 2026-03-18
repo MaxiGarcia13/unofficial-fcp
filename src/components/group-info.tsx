@@ -4,6 +4,7 @@ import type { Ranking } from '@/types/ranking'
 import { Table } from '@/components/table/table'
 import { useResults } from '@/hooks/use-results'
 import { useParams } from '@/hooks/useParams'
+import { request } from '@/utils/request'
 import { MatchBlock } from './match-block'
 
 const rankingColumns: TableColumn<Ranking>[] = [
@@ -19,9 +20,14 @@ export function GroupInfo() {
   const { params } = useParams()
 
   const { data, error, loading, fetchResult } = useResults<Group>(
-    () => fetch(`/api/group-info?${params.toString()}`).then(res => res.json()),
-    [],
-
+    () =>
+      request<Group>('/api/group-info', {
+        params: {
+          gender: params.get('gender'),
+          group: params.get('group'),
+        },
+      }),
+    [params.toString()],
   )
 
   const ranking = data?.ranking ?? []
