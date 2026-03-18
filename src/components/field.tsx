@@ -7,11 +7,11 @@ export interface FieldProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export function Field({ label, children, id, ...props }: FieldProps) {
   return (
-    <div className={cn('relative', props.className)} {...props}>
+    <div className={cn('block text-gray-400', props.className)} {...props}>
       {
         label
         && (
-          <label htmlFor={id} className="block mb-2.5 text-sm font-medium text-heading">
+          <label htmlFor={id} className="mb-2 block text-sm font-medium text-white">
             {label}
           </label>
         )

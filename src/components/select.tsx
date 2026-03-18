@@ -2,38 +2,77 @@ import { useId } from 'react'
 import { cn } from '../utils/classes'
 import { Field } from './field'
 
-export interface SelectProps extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'onChange'> {
+export interface SelectProps extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'onChange' | 'value'> {
   options: { value: string, label: string }[]
-  value: string
-  onChange: (value: string) => void
   label?: string
+  value?: string
+  onChange?: (value: string) => void
 }
 
-export function Select({ options, onChange, ...props }: SelectProps) {
-  const id = props.id || props.name || useId()
+function ChevronIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden
+    >
+      <path
+        d="M4 6l4 4 4-4"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+export function Select({
+  options,
+  label,
+  className,
+  id,
+  name,
+  value,
+  onChange,
+  ...props
+}: SelectProps) {
+  const selectId = id || name || useId()
 
   return (
-    <Field label={props.label} id={id} className={props.className}>
-      <select
-        id={id}
-        className={cn(
-          'w-full p-2 rounded',
-          'border border-neutral-300 focus:border-blue-500 outline-none',
-          'text-heading text-sm placeholder:text-body',
-          props.className,
-        )}
-        onChange={event => onChange?.(event.target.value)}
-        {...props}
-      >
-        {options.map(option => (
-          <option
-            key={option.value}
-            value={option.value}
-          >
-            {option.label}
-          </option>
-        ))}
-      </select>
+    <Field label={label} id={selectId} className={cn('group min-w-0', className)}>
+      <div className="relative">
+        <select
+          id={selectId}
+          name={name}
+          className={cn(
+            'w-full min-w-0 cursor-pointer appearance-none rounded-lg border border-gray-600 bg-gray-700 py-2.5 pl-3 pr-10',
+            'text-sm text-white',
+            'transition-colors duration-150',
+            'hover:border-gray-500 hover:bg-gray-600',
+            'focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500',
+            'disabled:cursor-not-allowed disabled:opacity-50',
+          )}
+          value={value}
+          onChange={e => onChange?.(e.target.value)}
+          {...props}
+        >
+          {options.map(option => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+        <span
+          className="pointer-events-none absolute inset-y-0 right-0 flex w-10 items-center justify-center text-gray-400 group-focus-within:text-blue-400"
+          aria-hidden
+        >
+          <ChevronIcon />
+        </span>
+      </div>
     </Field>
   )
 }

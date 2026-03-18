@@ -1,17 +1,24 @@
+---
+import { ClientRouter } from "astro:transitions";
+---
+
 <html>
   <head>
-    <title>FCP - Unofficial UI</title>
+    <title>Pádel Cantabria - Unofficial UI</title>
     <meta
       name="description"
-      content="Unofficial FCP is a project for educational purposes only. Improve the UI of the official Federacion cantabra de padel website."
+      content="Unofficial Pádel Cantabria website is a project for educational purposes only. Improve the UI of the official Federacion cantabra de padel website."
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="UTF-8" />
 
     <link rel="stylesheet" href="/src/styles/global.css" />
+    <ClientRouter />
   </head>
-  <body>
-    <main class="container mx-auto max-w-4xl">
+  <body class="bg-gray-950 text-gray-100 antialiased min-h-screen">
+    <main
+      class="mx-auto max-w-4xl px-4 py-8 sm:py-10 min-h-screen flex flex-col"
+    >
       <slot />
     </main>
   </body>

@@ -1,0 +1,27 @@
+---
+import { Badge } from "../badge";
+import { Filters } from "./filters";
+---
+
+<header
+  class="rounded-lg border border-gray-800 bg-gray-900 p-6 shadow-sm sm:p-8"
+>
+  <div class="flex flex-col gap-6">
+    <div
+      class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-6"
+    >
+      <div class="space-y-3">
+        <h1
+          class="max-w-2xl text-balance text-2xl font-bold tracking-tight text-neutral-100 sm:text-3xl"
+        >
+          🎾 Pádel Cantabria
+        </h1>
+      </div>
+      <Badge>UI no oficial</Badge>
+    </div>
+
+    <div class="border-t border-gray-800 pt-6">
+      <Filters client:only="react" />
+    </div>
+  </div>
+</header>
