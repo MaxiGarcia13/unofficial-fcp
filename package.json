@@ -1,20 +1,22 @@
 {
   "name": "unofficial-fcp",
+  "type": "commonjs",
   "version": "0.0.0",
-  "description": "",
+  "author": "Maximiliano Garcia Mortigliengo",
+  "license": "ISC",
   "homepage": "https://github.com/MaxiGarcia13/unofficial-fcp#readme",
-  "bugs": {
-    "url": "https://github.com/MaxiGarcia13/unofficial-fcp/issues"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MaxiGarcia13/unofficial-fcp.git"
   },
-  "license": "ISC",
-  "author": "Maximiliano Garcia Mortigliengo",
-  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/MaxiGarcia13/unofficial-fcp/issues"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^7.7.3"
   }
 }
