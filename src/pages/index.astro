@@ -1,0 +1,13 @@
+---
+import { GenderSelector } from "../components/gender-selector";
+import AppLayout from "../layouts/app.astro";
+---
+
+<AppLayout>
+  <h1 class="text-3xl font-bold text-center">FCP - Unofficial UI</h1>
+  <GenderSelector
+    client:load
+    value="MASCULINO"
+    onChange={(value) => console.log(value)}
+  />
+</AppLayout>
