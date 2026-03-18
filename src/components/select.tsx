@@ -1,5 +1,5 @@
 import { useId } from 'react'
-import { cn } from '../utils/classes'
+import { cn } from '@/utils/classes'
 import { Field } from './field'
 
 export interface SelectProps extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'onChange' | 'value'> {

@@ -1,6 +1,6 @@
-import type { Gender } from '../../types'
+import type { Gender } from '@/types'
 import { navigate } from 'astro:transitions/client'
-import { useParams } from '../../hooks/useParams'
+import { useParams } from '@/hooks/useParams'
 import { CategoryGroupSelect } from '../category-select'
 import { GenderSwitch } from '../gender-switch'
 
@@ -12,7 +12,7 @@ export function Filters() {
     if (params.get('group').length === 0)
       return
 
-    navigate(`/search?${params.toString()}`)
+    navigate(`/group-info?${params.toString()}`)
   }
 
   return (

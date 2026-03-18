@@ -1,4 +1,4 @@
-import { cn } from '../utils/classes'
+import { cn } from '@/utils/classes'
 
 interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   children: React.ReactNode

@@ -1,6 +1,6 @@
-import type { Gender } from '../types'
+import type { Gender } from '@/types'
 import { useRef, useState } from 'react'
-import { cn } from '../utils/classes'
+import { cn } from '@/utils/classes'
 import { Field } from './field'
 
 const options: { value: Gender, label: string }[] = [

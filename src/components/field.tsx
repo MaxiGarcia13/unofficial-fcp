@@ -1,4 +1,4 @@
-import { cn } from '../utils/classes'
+import { cn } from '@/utils/classes'
 
 export interface FieldProps extends React.HTMLAttributes<HTMLDivElement> {
   label?: string

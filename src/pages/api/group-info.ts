@@ -1,28 +1,29 @@
-import type { APIRoute } from 'astro'
-import type { GroupInfo } from '../../types'
+import { API_URL } from 'astro:env/server'
 
-function getGroupInfo(_group: string, _gender: string): GroupInfo {
-  return {
-    calendarMatches: {
-      thisWeek: [],
-      upcoming: {},
-    },
-    ranking: [],
-  }
-}
-
-export const GET = (({ request }) => {
+export async function GET({ request }) {
   const { searchParams } = new URL(request.url)
+
   const group = searchParams.get('group')
   const gender = searchParams.get('gender')
 
-  const body = getGroupInfo(group, gender)
+  if (!group || !gender) {
+    return new Response(JSON.stringify({ message: 'Group and gender are required' }), { status: 400 })
+  }
 
-  return new Response(JSON.stringify(body), {
-    status: 200,
-    headers: {
-      'Content-Type': 'application/json',
-      'Cache-Control': 'public, max-age=60',
-    },
-  })
-}) satisfies APIRoute
+  try {
+    const response = await fetch(`${API_URL}/group-info?${searchParams.toString()}`)
+
+    const data = await response.json()
+
+    return new Response(JSON.stringify(data), {
+      status: response.status,
+      headers: response.headers,
+    })
+  }
+  catch (error) {
+    const { status, message } = error instanceof Error
+      ? { status: ('status' in error ? error.status : 500) as number, message: error.message }
+      : { status: 500, message: 'Internal server error' }
+    return new Response(JSON.stringify({ message }), { status })
+  }
+}
