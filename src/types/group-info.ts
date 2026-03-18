@@ -1,8 +1,7 @@
 import type { CalendarMatches } from './match'
 import type { Ranking } from './ranking'
 
-/** Response shape for the group-info API */
-export interface GroupInfo {
+export interface Group {
   calendarMatches: CalendarMatches
   ranking: Ranking[]
 }

@@ -1,5 +1,6 @@
 import type { Gender } from '@/types'
 import { navigate } from 'astro:transitions/client'
+import { useState } from 'react'
 import { useParams } from '@/hooks/useParams'
 import { CategoryGroupSelect } from '../category-select'
 import { GenderSwitch } from '../gender-switch'
@@ -7,12 +8,24 @@ import { GenderSwitch } from '../gender-switch'
 export function Filters() {
   const { params } = useParams()
 
+  const [gender, setGender] = useState<Gender>((params.get('gender') ?? 'MASCULINO') as Gender)
+  const [group, setGroup] = useState(params.get('group') ?? '')
+
   const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault()
-    if (params.get('group').length === 0)
+
+    if (!group.length || !gender.length)
       return
 
-    navigate(`/group-info?${params.toString()}`)
+    navigate(`/group-info?gender=${gender}&group=${group}`)
+  }
+
+  const handleGenderChange = (value: Gender) => {
+    setGender(value)
+  }
+
+  const handleGroupChange = (value: string) => {
+    setGroup(value)
   }
 
   return (
@@ -25,8 +38,8 @@ export function Filters() {
         <GenderSwitch
           name="gender"
           label="Género"
-          value={params.get?.('gender') as Gender || 'MASCULINO'}
-          onChange={value => params.set('gender', value)}
+          value={gender}
+          onChange={handleGenderChange}
         />
       </div>
 
@@ -34,8 +47,8 @@ export function Filters() {
         <CategoryGroupSelect
           name="group"
           label="Grupo / categoría"
-          value={params.get?.('group')}
-          onChange={value => params.set('group', value)}
+          value={group}
+          onChange={handleGroupChange}
         />
       </div>
 

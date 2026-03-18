@@ -16,8 +16,11 @@ export async function GET({ request }) {
     const data = await response.json()
 
     return new Response(JSON.stringify(data), {
-      status: response.status,
-      headers: response.headers,
+      status: 200,
+      headers: {
+        ...response.headers,
+        'Content-Type': 'application/json',
+      },
     })
   }
   catch (error) {
