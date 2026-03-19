@@ -25,6 +25,10 @@ export default defineConfig({
         context: 'server',
         access: 'secret',
       }),
+      API_KEY: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
       REQUEST_CACHE: envField.number({
         context: 'client',
         access: 'public',

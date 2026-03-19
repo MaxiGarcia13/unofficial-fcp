@@ -1,4 +1,4 @@
-import { API_URL } from 'astro:env/server';
+import { API_KEY, API_URL } from 'astro:env/server';
 
 export async function GET({ request }) {
   const { searchParams } = new URL(request.url);
@@ -12,7 +12,11 @@ export async function GET({ request }) {
   }
 
   try {
-    const response = await fetch(`${API_URL}/team?${searchParams.toString()}`);
+    const response = await fetch(`${API_URL}/team?${searchParams.toString()}`, {
+      headers: {
+        'x-api-key': API_KEY,
+      },
+    });
 
     const data = await response.json();
 
