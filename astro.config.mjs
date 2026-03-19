@@ -9,16 +9,16 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
   output: 'server',
+  integrations: [react()],
   adapter: vercel(),
   vite: {
     plugins: [tailwindcss()],
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, 'src'),
+        '@': path.resolve(__dirname, './src'),
       },
     },
   },
-  integrations: [react()],
   env: {
     schema: {
       API_URL: envField.string({
