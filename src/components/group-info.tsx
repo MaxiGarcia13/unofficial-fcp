@@ -36,7 +36,7 @@ export function GroupInfo() {
   return (
     <div className="flex min-w-0 flex-col gap-8 w-full mt-4">
       <section>
-        <h2 className="mb-3 text-lg font-semibold text-white w-full">Tabla de posiciones</h2>
+        <h2 className="mb-3 text-lg font-semibold text-gray-100 w-full">Tabla de posiciones</h2>
 
         <Table<Ranking>
           className="w-full"
@@ -62,7 +62,7 @@ export function GroupInfo() {
 
       {!loading && !error && calendar && (
         <section>
-          <h2 className="text-lg font-semibold text-white">Calendario</h2>
+          <h2 className="text-lg font-semibold text-gray-100">Calendario</h2>
           <MatchBlock title="Esta semana" matches={calendar.thisWeek ?? []} />
           {Object.entries(calendar.upcoming ?? {}).map(([label, matches]) => (
             <MatchBlock key={label} title={label} matches={matches} />
