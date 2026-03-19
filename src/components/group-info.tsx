@@ -1,6 +1,6 @@
 import type { TableColumn } from '@/components/table/types';
 import type { Gender } from '@/types';
-import type { Group } from '@/types/group-info';
+import type { Group } from '@/types/group';
 import type { Ranking } from '@/types/ranking';
 import { Table } from '@/components/table/table';
 import { useResults } from '@/hooks/use-results';
@@ -19,7 +19,7 @@ const rankingColumns: TableColumn<Ranking>[] = [
 export function GroupInfo({ gender, group }: { gender: Gender; group: string }) {
   const { data, error, loading, fetchResult } = useResults<Group>(
     () =>
-      request<Group>('/api/group-info', {
+      request<Group>('/api/group', {
         params: {
           gender,
           group,
@@ -49,6 +49,7 @@ export function GroupInfo({ gender, group }: { gender: Gender; group: string }) 
           getRowKey={row => `${row.position}-${row.team}`}
 
         />
+
         {error && (
           <button
             type="button"
@@ -58,6 +59,7 @@ export function GroupInfo({ gender, group }: { gender: Gender; group: string }) 
             Reintentar
           </button>
         )}
+
       </section>
 
       {!loading && !error && calendar && (
@@ -65,7 +67,9 @@ export function GroupInfo({ gender, group }: { gender: Gender; group: string }) 
           <h2 className="text-lg font-semibold text-cantabria-text">
             Calendario
           </h2>
+
           <MatchBlock title="Esta semana" matches={calendar.thisWeek ?? []} />
+
           {Object.entries(calendar.upcoming ?? {}).map(([label, matches]) => (
             <MatchBlock key={label} title={label} matches={matches} />
           ))}

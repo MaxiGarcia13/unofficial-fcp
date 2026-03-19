@@ -11,7 +11,7 @@ export async function GET({ request }) {
   }
 
   try {
-    const response = await fetch(`${API_URL}/group-info?${searchParams.toString()}`);
+    const response = await fetch(`${API_URL}/group?${searchParams.toString()}`);
 
     const data = await response.json();
 
