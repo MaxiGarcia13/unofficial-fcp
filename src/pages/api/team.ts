@@ -20,6 +20,10 @@ export async function GET({ request }) {
 
     const data = await response.json();
 
+    if (!response.ok) {
+      throw data;
+    }
+
     return new Response(JSON.stringify(data), {
       status: 200,
       headers: {
@@ -27,10 +31,11 @@ export async function GET({ request }) {
         'Content-Type': 'application/json',
       },
     });
-  } catch (error) {
-    const { status, message } = error instanceof Error
-      ? { status: ('status' in error ? error.status : 500) as number, message: error.message }
-      : { status: 500, message: 'Internal server error' };
+  } catch (error: any) {
+    console.error({ error });
+    const status = error.status ?? 500;
+    const message = error.message ?? 'Internal server error';
+
     return new Response(JSON.stringify({ message }), { status });
   }
 }

@@ -43,28 +43,34 @@ export async function request<T>(
   if (body !== undefined) {
     init.body = typeof body === 'string' ? body : JSON.stringify(body);
   }
-  const response = await fetch(fullUrl, init);
-  const data = (await response.json()) as T;
 
-  if (!response.ok) {
-    const error = new Error(
-      typeof data === 'object' && data !== null && 'message' in data
-        ? String((data as { message: unknown }).message)
-        : response.statusText || `Request failed with status ${response.status}`,
-    ) as Error & { status: number };
-    error.status = response.status;
-    throw error;
+  try {
+    const response = await fetch(fullUrl, init);
+    const data = (await response.json()) as T;
+
+    if (!response.ok) {
+      const { message, status } = getError(data);
+      throw new Error(message, { cause: { status } });
+    }
+
+    if (useCache) {
+      setCached(requestCacheKey(fullUrl), data, REQUEST_CACHE_TTL_MS);
+    }
+
+    return data;
+  } catch (error) {
+    const { status, message } = getError(error);
+
+    throw new Error(message, { cause: { status } });
   }
-
-  if (useCache) {
-    setCached(requestCacheKey(fullUrl), data, REQUEST_CACHE_TTL_MS);
-  }
-
-  return data;
 }
 
-export function isApiError(error: unknown): error is { status: number } {
-  return typeof error === 'object' && error !== null && 'status' in error;
+function getError(error: unknown): { status: number; message: string } {
+  if (error instanceof Error) {
+    return { status: ('status' in error ? error.status : 500) as number, message: error.message };
+  }
+
+  return { status: 500, message: 'Internal server error' };
 }
 
 export function buildUrlWithParams(
