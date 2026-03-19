@@ -22,6 +22,7 @@ export function Filters() {
 
   const handleGenderChange = (value: Gender) => {
     setGender(value)
+    setGroup('')
   }
 
   const handleGroupChange = (value: string) => {
@@ -47,6 +48,7 @@ export function Filters() {
         <CategoryGroupSelect
           name="group"
           label="Grupo / categoría"
+          gender={gender}
           value={group}
           onChange={handleGroupChange}
         />
