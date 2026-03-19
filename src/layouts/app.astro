@@ -1,4 +1,5 @@
 ---
+import type { Gender } from '@/types';
 import { ClientRouter } from 'astro:transitions';
 import { Footer } from '@/components/footer';
 import { cn } from '@/utils/classes';
@@ -8,23 +9,61 @@ interface Props {
   class?: string;
 }
 
+interface Params {
+  gender?: Gender;
+  group?: string;
+  teamName?: string;
+  team1?: string;
+  team2?: string;
+}
+
 const { class: className } = Astro.props;
-const { gender, group } = Astro.params;
+const { gender, group, teamName, team1, team2 } =
+  Astro.params as unknown as Params;
+
+function getDescription() {
+  if (team1 && team2) {
+    return `Pádel Cantabria - Comparación de equipos ${team1} vs ${team2}`;
+  }
+
+  if (teamName) {
+    return `Pádel Cantabria - Información del equipo ${teamName}`;
+  }
+
+  if (group && gender) {
+    return `Pádel Cantabria - Información de la categoría ${group} de ${gender.toLowerCase()}`;
+  }
+
+  return 'Pádel Cantabria - mejora la Ui del sitio oficial de la Liga Cántabra de Pádel, fue creada con motivos educativos.';
+}
+
+const description = getDescription();
 ---
 
 <html>
   <head>
-    <title>Pádel Cantabria - Unofficial UI</title>
-
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.png" />
+    <link rel="canonical" href={Astro.url.href} />
 
+    <title>Pádel Cantabria</title>
+
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:title" content="Pádel Cantabria" />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL('/og-image.png', Astro.url)} />
+    <meta property="og:locale" content="es_ES" />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url.href} />
+    <meta property="twitter:title" content="Pádel Cantabria" />
+    <meta property="twitter:description" content={description} />
     <meta
-      name="description"
-      content={gender && group
-        ? `Pádel Cantabria - Información de la categoría ${group} de ${gender.toLowerCase()}`
-        : 'Pádel Cantabria - mejora la Ui del sitio oficial de la Liga Cántabra de Pádel, fue creada con motivos educativos'}
+      property="twitter:image"
+      content={new URL('/og-image.png', Astro.url)}
     />
 
     <ClientRouter />
