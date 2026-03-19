@@ -31,6 +31,7 @@ export function Table<T extends Record<string, any>>({
   fillHeight = false,
   onRowClick,
   loading,
+  ...props
 }: TableProps<T>) {
   return (
     <div
@@ -39,6 +40,7 @@ export function Table<T extends Record<string, any>>({
         fillHeight && 'flex min-h-0 flex-1 flex-col',
         className,
       )}
+      {...props}
     >
       <div
         className={cn(

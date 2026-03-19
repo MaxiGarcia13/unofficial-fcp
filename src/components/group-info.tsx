@@ -2,6 +2,7 @@ import type { TableColumn } from '@/components/table/types';
 import type { Gender } from '@/types';
 import type { Group } from '@/types/group';
 import type { Ranking } from '@/types/ranking';
+import { navigate } from 'astro:transitions/client';
 import { Table } from '@/components/table/table';
 import { useResults } from '@/hooks/use-results';
 import { request } from '@/utils/request';
@@ -47,6 +48,9 @@ export function GroupInfo({ gender, group }: { gender: Gender; group: string }) 
           emptyMessage="Sin datos de clasificación"
           fillHeight={false}
           getRowKey={row => `${row.position}-${row.team}`}
+          onRowClick={(row) => {
+            navigate(`/${gender}-${group}/${row.team}`);
+          }}
 
         />
 

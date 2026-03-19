@@ -1,0 +1,30 @@
+---
+import type { Gender } from '@/types';
+import { Header } from '@/components/header';
+import { TeamPlayersTable } from '@/components/team-players-table';
+import AppLayout from '@/layouts/app.astro';
+import TeamInfoLayout from '@/layouts/team-info.astro';
+
+export const prerender = false;
+
+interface Params {
+  gender: Gender;
+  group: string;
+  teamName: string;
+}
+
+const { gender, group, teamName } = Astro.params as unknown as Params;
+---
+
+<AppLayout>
+  <Header gender={gender} group={group} />
+
+  <TeamInfoLayout gender={gender} group={group} teamName={teamName}>
+    <TeamPlayersTable
+      client:only="react"
+      gender={gender}
+      group={group}
+      teamName={teamName}
+    />
+  </TeamInfoLayout>
+</AppLayout>
