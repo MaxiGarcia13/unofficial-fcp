@@ -1,4 +1,5 @@
 import type { TableColumn } from './types';
+import { cn } from '@/utils/classes';
 
 export interface TableHeaderProps<T extends Record<string, any>> {
   columns: TableColumn<T>[];
@@ -14,7 +15,7 @@ export function TableHeader<T extends Record<string, any>>({
           return (
             <th
               key={String(col.key)}
-              className="px-4 py-3 font-semibold text-cantabria-text"
+              className={cn('px-4 py-3 font-semibold text-cantabria-text', col.className)}
               style={{
                 ...(col.maxWidth && { maxWidth: col.maxWidth }),
                 ...(col.minWidth && { minWidth: col.minWidth }),

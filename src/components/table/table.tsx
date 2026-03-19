@@ -48,7 +48,7 @@ export function Table<T extends Record<string, any>>({
           fillHeight && 'min-h-0 flex-1',
         )}
       >
-        <table className="w-full min-w-[480px] border-collapse text-left text-sm text-cantabria-text">
+        <table className="w-full border-collapse text-left text-sm text-cantabria-text">
           <TableHeader columns={columns} />
           <tbody className="w-full">
             {

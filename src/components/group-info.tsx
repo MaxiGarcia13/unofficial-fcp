@@ -72,10 +72,21 @@ export function GroupInfo({ gender, group }: { gender: Gender; group: string }) 
             Calendario
           </h2>
 
-          <MatchBlock title="Esta semana" matches={calendar.thisWeek ?? []} />
+          <MatchBlock
+            title="Esta semana"
+            matches={calendar.thisWeek ?? []}
+            gender={gender}
+            group={group}
+          />
 
           {Object.entries(calendar.upcoming ?? {}).map(([label, matches]) => (
-            <MatchBlock key={label} title={label} matches={matches} />
+            <MatchBlock
+              key={label}
+              title={label}
+              matches={matches}
+              gender={gender}
+              group={group}
+            />
           ))}
         </section>
       )}
