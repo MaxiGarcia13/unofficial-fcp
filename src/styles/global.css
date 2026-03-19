@@ -27,6 +27,16 @@
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Liga Cántabra de Pádel logo palette */
+  --color-cantabria-dark: #455a64;
+  --color-cantabria-dark-muted: #37474f;
+  --color-cantabria-red: #c62828;
+  --color-cantabria-bg: #0f1419;
+  --color-cantabria-surface: #1e2a36;
+  --color-cantabria-border: #37474f;
+  --color-cantabria-text: #eceff1;
+  --color-cantabria-muted: #90a4ae;
 }
 
 @layer base {

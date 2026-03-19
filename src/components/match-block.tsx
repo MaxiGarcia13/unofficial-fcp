@@ -5,23 +5,23 @@ export function MatchBlock({ title, matches }: { title: string; matches: Match[]
     return null;
   return (
     <div className="mt-6">
-      <h3 className="mb-2 text-sm font-semibold text-gray-100">{title}</h3>
-      <ul className="space-y-2 text-sm text-gray-400">
+      <h3 className="mb-2 text-sm font-semibold text-cantabria-text">{title}</h3>
+      <ul className="space-y-2 text-sm text-cantabria-muted">
         {matches.map((m, i) => (
           <li
             key={`${m.date}-${m.homeTeam}-${m.awayTeam}-${i}`}
-            className="rounded-lg border border-gray-700 bg-gray-800 px-3 py-2"
+            className="rounded-lg border border-cantabria-border bg-cantabria-surface px-3 py-2"
           >
-            <span className="text-gray-100">
+            <span className="text-cantabria-text">
               {m.homeTeam ?? '—'}
               {' vs '}
               {m.awayTeam ?? '—'}
             </span>
             {m.date && (
-              <span className="mt-1 block text-xs text-gray-400">{m.date}</span>
+              <span className="mt-1 block text-xs text-cantabria-muted">{m.date}</span>
             )}
             {(m.location || m.rounds) && (
-              <span className="mt-0.5 block text-xs text-gray-400">
+              <span className="mt-0.5 block text-xs text-cantabria-muted">
                 {[m.location, m.rounds].filter(Boolean).join(' · ')}
               </span>
             )}

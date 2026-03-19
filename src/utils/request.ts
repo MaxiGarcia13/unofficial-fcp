@@ -1,6 +1,7 @@
+import { REQUEST_CACHE } from 'astro:env/client';
 import { getCached, setCached } from './cache';
 
-const REQUEST_CACHE_TTL_MS = 10 * 60 * 1000; // 10 minutes
+const REQUEST_CACHE_TTL_MS = REQUEST_CACHE ? Number(REQUEST_CACHE) : 10 * 60 * 1000; // 10 minutes
 
 export interface RequestConfig extends Omit<RequestInit, 'body'> {
   params?: Record<string, string | number | undefined | null>;

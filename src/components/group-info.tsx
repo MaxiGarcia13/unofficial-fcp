@@ -1,9 +1,9 @@
 import type { TableColumn } from '@/components/table/types';
+import type { Gender } from '@/types';
 import type { Group } from '@/types/group-info';
 import type { Ranking } from '@/types/ranking';
 import { Table } from '@/components/table/table';
 import { useResults } from '@/hooks/use-results';
-import { useParams } from '@/hooks/useParams';
 import { request } from '@/utils/request';
 import { MatchBlock } from './match-block';
 
@@ -16,18 +16,16 @@ const rankingColumns: TableColumn<Ranking>[] = [
   { key: 'matchesWon', label: 'PG' },
 ];
 
-export function GroupInfo() {
-  const { params } = useParams();
-
+export function GroupInfo({ gender, group }: { gender: Gender; group: string }) {
   const { data, error, loading, fetchResult } = useResults<Group>(
     () =>
       request<Group>('/api/group-info', {
         params: {
-          gender: params.get('gender'),
-          group: params.get('group'),
+          gender,
+          group,
         },
       }),
-    [params.toString()],
+    [],
   );
 
   const ranking = data?.ranking ?? [];
@@ -36,7 +34,7 @@ export function GroupInfo() {
   return (
     <div className="flex min-w-0 flex-col gap-8 w-full mt-4">
       <section>
-        <h2 className="mb-3 text-lg font-semibold text-gray-100 w-full">Tabla de posiciones</h2>
+        <h2 className="mb-3 text-lg font-semibold text-cantabria-text w-full">Tabla de posiciones</h2>
 
         <Table<Ranking>
           className="w-full"
@@ -53,7 +51,7 @@ export function GroupInfo() {
           <button
             type="button"
             onClick={() => fetchResult()}
-            className="mt-3 text-sm text-blue-400 hover:text-blue-300"
+            className="mt-3 text-sm text-cantabria-red hover:text-red-400"
           >
             Reintentar
           </button>
@@ -62,7 +60,7 @@ export function GroupInfo() {
 
       {!loading && !error && calendar && (
         <section>
-          <h2 className="text-lg font-semibold text-gray-100">Calendario</h2>
+          <h2 className="text-lg font-semibold text-cantabria-text">Calendario</h2>
           <MatchBlock title="Esta semana" matches={calendar.thisWeek ?? []} />
           {Object.entries(calendar.upcoming ?? {}).map(([label, matches]) => (
             <MatchBlock key={label} title={label} matches={matches} />

@@ -46,14 +46,14 @@ export function GenderSwitch({ label, name, value = 'MASCULINO', onChange }: Gen
                 onChange?.(opt.value);
               }}
               className={cn(
-                'min-w-22 border cursor-pointer border-gray-600 px-4 py-2.5 text-sm font-medium transition-colors',
+                'min-w-22 border cursor-pointer border-cantabria-border px-4 py-2.5 text-sm font-medium transition-colors',
                 !isFirst && '-ml-px',
                 isFirst && 'rounded-l-lg',
                 isLast && 'rounded-r-lg',
                 isActive
-                  ? 'relative z-10 border-blue-600 bg-blue-600 text-white'
-                  : 'border-gray-600 bg-gray-700 text-gray-200 hover:bg-gray-600',
-                'focus-visible:z-20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900',
+                  ? 'relative z-10 border-cantabria-red bg-cantabria-red text-white'
+                  : 'border-cantabria-border bg-cantabria-surface text-cantabria-text hover:bg-cantabria-dark-muted',
+                'focus-visible:z-20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cantabria-red focus-visible:ring-offset-2 focus-visible:ring-offset-cantabria-bg',
               )}
             >
               {opt.label}

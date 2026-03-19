@@ -1,15 +1,12 @@
 import type { Gender } from '@/types';
 import { navigate } from 'astro:transitions/client';
 import { useState } from 'react';
-import { useParams } from '@/hooks/useParams';
 import { CategoryGroupSelect } from '../category-select';
 import { GenderSwitch } from '../gender-switch';
 
-export function Filters() {
-  const { params } = useParams();
-
-  const [gender, setGender] = useState<Gender>((params.get('gender') ?? 'MASCULINO') as Gender);
-  const [group, setGroup] = useState(params.get('group') ?? '');
+export function Filters(props: { gender: Gender; group: string }) {
+  const [gender, setGender] = useState<Gender>((props.gender ?? 'MASCULINO') as Gender);
+  const [group, setGroup] = useState(props.group);
 
   const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -17,7 +14,7 @@ export function Filters() {
     if (!group.length || !gender.length)
       return;
 
-    navigate(`/group-info?gender=${gender}&group=${group}`);
+    navigate(`/${gender}-${group}`);
   };
 
   const handleGenderChange = (value: Gender) => {
@@ -56,7 +53,7 @@ export function Filters() {
 
       <button
         type="submit"
-        className="shrink-0 cursor-pointer rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-800/50 focus:ring-offset-2 focus:ring-offset-gray-900 sm:self-end"
+        className="shrink-0 cursor-pointer rounded-lg bg-cantabria-red px-5 py-2.5 text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-2 focus:ring-cantabria-red focus:ring-offset-2 focus:ring-offset-cantabria-surface sm:self-end"
       >
         Buscar
       </button>

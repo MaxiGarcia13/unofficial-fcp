@@ -16,7 +16,7 @@ export function TableRow<T extends Record<string, any>>({
   return (
     <tr
       className={cn(
-        'border-b border-gray-700/30 transition-colors hover:bg-gray-700/30',
+        'border-b border-cantabria-border/50 transition-colors hover:bg-cantabria-dark-muted/30',
         onRowClick && 'cursor-pointer',
       )}
       onClick={onRowClick ? () => onRowClick(row) : undefined}
@@ -28,7 +28,7 @@ export function TableRow<T extends Record<string, any>>({
         return (
           <td
             key={String(col.key)}
-            className={cn('px-4 py-3 text-gray-200', col.className)}
+            className={cn('px-4 py-3 text-cantabria-text', col.className)}
             style={{
               ...(col.maxWidth && { maxWidth: col.maxWidth }),
               ...(col.minWidth && { minWidth: col.minWidth }),

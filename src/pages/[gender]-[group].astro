@@ -1,0 +1,21 @@
+---
+import type { Gender } from '@/types';
+import { GroupInfo } from '@/components/group-info';
+import { Header } from '@/components/header';
+import AppLayout from '@/layouts/app.astro';
+
+export const prerender = false;
+
+interface Params {
+  gender: Gender;
+  group: string;
+}
+
+const { gender, group } = Astro.params as unknown as Params;
+---
+
+<AppLayout>
+  <Header gender={gender} group={group} />
+
+  <GroupInfo client:only="react" gender={gender} group={group} />
+</AppLayout>

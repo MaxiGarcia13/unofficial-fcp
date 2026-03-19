@@ -49,11 +49,11 @@ export function Select({
           id={selectId}
           name={name}
           className={cn(
-            'w-full min-w-0 cursor-pointer appearance-none rounded-lg border border-gray-600 bg-gray-700 py-2.5 pl-3 pr-10',
-            'text-sm text-white',
+            'w-full min-w-0 cursor-pointer appearance-none rounded-lg border border-cantabria-border bg-cantabria-surface py-2.5 pl-3 pr-10',
+            'text-sm text-cantabria-text',
             'transition-colors duration-150',
-            'hover:border-gray-500 hover:bg-gray-600',
-            'focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500',
+            'hover:border-cantabria-dark hover:bg-cantabria-dark-muted',
+            'focus:border-cantabria-red focus:outline-none focus:ring-1 focus:ring-cantabria-red',
             'disabled:cursor-not-allowed disabled:opacity-50',
           )}
           value={value}
@@ -67,7 +67,7 @@ export function Select({
           ))}
         </select>
         <span
-          className="pointer-events-none absolute inset-y-0 right-0 flex w-10 items-center justify-center text-gray-400 group-focus-within:text-blue-400"
+          className="pointer-events-none absolute inset-y-0 right-0 flex w-10 items-center justify-center text-cantabria-muted group-focus-within:text-cantabria-red"
           aria-hidden
         >
           <ChevronIcon />

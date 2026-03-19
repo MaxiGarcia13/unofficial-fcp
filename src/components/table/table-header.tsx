@@ -9,12 +9,12 @@ export function TableHeader<T extends Record<string, any>>({
 }: TableHeaderProps<T>) {
   return (
     <thead>
-      <tr className="sticky top-0 z-10 border-b border-gray-700 bg-gray-700 shadow-[0_1px_0_0_rgba(0,0,0,0.1)]">
+      <tr className="sticky top-0 z-10 border-b border-cantabria-border bg-cantabria-dark-muted shadow-[0_1px_0_0_rgba(0,0,0,0.1)]">
         {columns.map((col) => {
           return (
             <th
               key={String(col.key)}
-              className="px-4 py-3 font-semibold text-gray-100"
+              className="px-4 py-3 font-semibold text-cantabria-text"
               style={{
                 ...(col.maxWidth && { maxWidth: col.maxWidth }),
                 ...(col.minWidth && { minWidth: col.minWidth }),

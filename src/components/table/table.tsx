@@ -35,7 +35,7 @@ export function Table<T extends Record<string, any>>({
   return (
     <div
       className={cn(
-        'min-w-0 overflow-hidden rounded-lg border border-gray-700 bg-gray-800',
+        'min-w-0 overflow-hidden rounded-lg border border-cantabria-border bg-cantabria-surface',
         fillHeight && 'flex min-h-0 flex-1 flex-col',
         className,
       )}
@@ -46,7 +46,7 @@ export function Table<T extends Record<string, any>>({
           fillHeight && 'min-h-0 flex-1',
         )}
       >
-        <table className="w-full min-w-[480px] border-collapse text-left text-sm text-gray-200">
+        <table className="w-full min-w-[480px] border-collapse text-left text-sm text-cantabria-text">
           <TableHeader columns={columns} />
           <tbody className="w-full">
             {
