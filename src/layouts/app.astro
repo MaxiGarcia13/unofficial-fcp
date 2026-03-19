@@ -1,5 +1,6 @@
 ---
 import { ClientRouter } from 'astro:transitions';
+import { Footer } from '@/components/footer';
 import { cn } from '@/utils/classes';
 import '@/styles/global.css';
 
@@ -36,6 +37,8 @@ const { gender, group } = Astro.params;
       )}
     >
       <slot />
+
+      <Footer />
     </main>
   </body>
 </html>

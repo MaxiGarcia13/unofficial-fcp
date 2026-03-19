@@ -6,7 +6,7 @@ export function MatchBlock({ title, matches }: { title: string; matches: Match[]
   return (
     <div className="mt-6">
       <h3 className="mb-2 text-sm font-semibold text-cantabria-text">{title}</h3>
-      <ul className="space-y-2 text-sm text-cantabria-muted">
+      <ul className="space-y-4 text-sm text-cantabria-muted">
         {matches.map((m, i) => (
           <li
             key={`${m.date}-${m.homeTeam}-${m.awayTeam}-${i}`}
