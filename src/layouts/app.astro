@@ -1,7 +1,7 @@
 ---
-import { ClientRouter } from "astro:transitions";
-import { cn } from "@/utils/classes";
-import "@/styles/global.css";
+import { ClientRouter } from 'astro:transitions';
+import { cn } from '@/utils/classes';
+import '@/styles/global.css';
 
 interface Props {
   class?: string;
@@ -23,7 +23,7 @@ const { gender, group } = Astro.params;
       name="description"
       content={gender && group
         ? `Pádel Cantabria - Información de la categoría ${group} de ${gender.toLowerCase()}`
-        : "Pádel Cantabria - mejora la Ui del sitio oficial de la Liga Cántabra de Pádel, fue creada con motivos educativos"}
+        : 'Pádel Cantabria - mejora la Ui del sitio oficial de la Liga Cántabra de Pádel, fue creada con motivos educativos'}
     />
 
     <ClientRouter />
@@ -31,7 +31,7 @@ const { gender, group } = Astro.params;
   <body class="bg-cantabria-bg text-cantabria-text antialiased min-h-screen">
     <main
       class={cn(
-        "mx-auto max-w-4xl px-4 py-8 sm:py-10 min-h-screen flex flex-col",
+        'mx-auto max-w-4xl px-4 py-8 sm:py-10 min-h-screen flex flex-col',
         className,
       )}
     >
