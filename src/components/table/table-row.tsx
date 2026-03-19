@@ -1,11 +1,11 @@
-import type { TableColumn } from './types'
-import { cn } from '@/utils/classes'
-import { getNestedValue } from '@/utils/objects'
+import type { TableColumn } from './types';
+import { cn } from '@/utils/classes';
+import { getNestedValue } from '@/utils/objects';
 
 export interface TableRowProps<T extends Record<string, any>> {
-  row: T
-  columns: TableColumn<T>[]
-  onRowClick?: (row: T) => void
+  row: T;
+  columns: TableColumn<T>[];
+  onRowClick?: (row: T) => void;
 }
 
 export function TableRow<T extends Record<string, any>>({
@@ -23,8 +23,8 @@ export function TableRow<T extends Record<string, any>>({
       role={onRowClick ? 'button' : undefined}
     >
       {columns.map((col) => {
-        const raw = getNestedValue(row as Record<string, unknown>, String(col.key))
-        const content = col.render ? col.render(raw, row) : (raw as React.ReactNode)
+        const raw = getNestedValue(row as Record<string, unknown>, String(col.key));
+        const content = col.render ? col.render(raw, row) : (raw as React.ReactNode);
         return (
           <td
             key={String(col.key)}
@@ -36,8 +36,8 @@ export function TableRow<T extends Record<string, any>>({
           >
             {content ?? '—'}
           </td>
-        )
+        );
       })}
     </tr>
-  )
+  );
 }

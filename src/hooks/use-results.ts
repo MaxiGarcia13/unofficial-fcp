@@ -1,15 +1,15 @@
-import type { DependencyList } from 'react'
-import { useEffect, useState } from 'react'
+import type { DependencyList } from 'react';
+import { useEffect, useState } from 'react';
 
 export interface UseResultsReturn<T> {
-  data: T
-  error: Error | null
-  loading: boolean
-  fetchResult: () => void
+  data: T;
+  error: Error | null;
+  loading: boolean;
+  fetchResult: () => void;
 }
 
 export interface UseResultsOptions {
-  callOnMount?: boolean
+  callOnMount?: boolean;
 }
 
 export function useResults<T>(
@@ -17,39 +17,39 @@ export function useResults<T>(
   dependencies: DependencyList,
   options?: UseResultsOptions,
 ): UseResultsReturn<T> {
-  const [data, setData] = useState<T | null>(null)
-  const [error, setError] = useState<Error | null>(null)
-  const [loading, setLoading] = useState(true)
+  const [data, setData] = useState<T | null>(null);
+  const [error, setError] = useState<Error | null>(null);
+  const [loading, setLoading] = useState(true);
 
   const fetchResult = () => {
-    setLoading(true)
-    setError(null)
+    setLoading(true);
+    setError(null);
 
     fn()
       .then((data) => {
-        setData(data)
+        setData(data);
       })
       .catch((error: Error) => {
-        setError(error)
+        setError(error);
       })
       .finally(() => {
-        setLoading(false)
-      })
-  }
+        setLoading(false);
+      });
+  };
 
   useEffect(() => {
     if (options?.callOnMount === false) {
-      setLoading(false)
-      return
+      setLoading(false);
+      return;
     }
 
-    fetchResult()
-  }, dependencies)
+    fetchResult();
+  }, dependencies);
 
   return {
     data,
     error,
     loading,
     fetchResult,
-  }
+  };
 }

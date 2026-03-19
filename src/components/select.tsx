@@ -1,12 +1,12 @@
-import { useId } from 'react'
-import { cn } from '@/utils/classes'
-import { Field } from './field'
+import { useId } from 'react';
+import { cn } from '@/utils/classes';
+import { Field } from './field';
 
 export interface SelectProps extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'onChange' | 'value'> {
-  options: { value: string, label: string }[]
-  label?: string
-  value?: string
-  onChange?: (value: string) => void
+  options: { value: string; label: string }[];
+  label?: string;
+  value?: string;
+  onChange?: (value: string) => void;
 }
 
 function ChevronIcon({ className }: { className?: string }) {
@@ -27,7 +27,7 @@ function ChevronIcon({ className }: { className?: string }) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
 
 export function Select({
@@ -40,7 +40,7 @@ export function Select({
   onChange,
   ...props
 }: SelectProps) {
-  const selectId = id || name || useId()
+  const selectId = id || name || useId();
 
   return (
     <Field label={label} id={selectId} className={cn('group min-w-0', className)}>
@@ -74,5 +74,5 @@ export function Select({
         </span>
       </div>
     </Field>
-  )
+  );
 }

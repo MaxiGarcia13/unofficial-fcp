@@ -1,11 +1,11 @@
-import type { TableColumn } from '@/components/table/types'
-import type { Group } from '@/types/group-info'
-import type { Ranking } from '@/types/ranking'
-import { Table } from '@/components/table/table'
-import { useResults } from '@/hooks/use-results'
-import { useParams } from '@/hooks/useParams'
-import { request } from '@/utils/request'
-import { MatchBlock } from './match-block'
+import type { TableColumn } from '@/components/table/types';
+import type { Group } from '@/types/group-info';
+import type { Ranking } from '@/types/ranking';
+import { Table } from '@/components/table/table';
+import { useResults } from '@/hooks/use-results';
+import { useParams } from '@/hooks/useParams';
+import { request } from '@/utils/request';
+import { MatchBlock } from './match-block';
 
 const rankingColumns: TableColumn<Ranking>[] = [
   { key: 'position', label: 'Pos.', className: 'w-14' },
@@ -14,10 +14,10 @@ const rankingColumns: TableColumn<Ranking>[] = [
   { key: 'pointsWon', label: 'Pts.' },
   { key: 'matchesPlayed', label: 'PJ' },
   { key: 'matchesWon', label: 'PG' },
-]
+];
 
 export function GroupInfo() {
-  const { params } = useParams()
+  const { params } = useParams();
 
   const { data, error, loading, fetchResult } = useResults<Group>(
     () =>
@@ -28,10 +28,10 @@ export function GroupInfo() {
         },
       }),
     [params.toString()],
-  )
+  );
 
-  const ranking = data?.ranking ?? []
-  const calendar = data?.calendarMatches
+  const ranking = data?.ranking ?? [];
+  const calendar = data?.calendarMatches;
 
   return (
     <div className="flex min-w-0 flex-col gap-8 w-full mt-4">
@@ -70,5 +70,5 @@ export function GroupInfo() {
         </section>
       )}
     </div>
-  )
+  );
 }

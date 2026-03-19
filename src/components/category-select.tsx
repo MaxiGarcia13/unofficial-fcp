@@ -1,12 +1,12 @@
-import type { SelectProps } from './select'
-import type { Gender } from '@/types'
-import { Select } from './select'
+import type { SelectProps } from './select';
+import type { Gender } from '@/types';
+import { Select } from './select';
 
 interface CategoryGroupSelectProps extends Omit<SelectProps, 'options'> {
-  gender: Gender
+  gender: Gender;
 }
 
-const placeholder = { value: '', label: 'Seleccionar grupo…' }
+const placeholder = { value: '', label: 'Seleccionar grupo…' };
 
 const masculinCategoryOptions = [
   '1ª CATEGORIA MASCULINA - GRUPO A',
@@ -32,7 +32,7 @@ const masculinCategoryOptions = [
   '6ª CATEGORIA MASCULINA - GRUPO D',
   '6ª CATEGORIA MASCULINA - GRUPO E',
   '6ª CATEGORIA MASCULINA - GRUPO F',
-]
+];
 
 const femeninCategoryOptions = [
   '1ª CATEGORIA FEMENINA - GRUPO A',
@@ -50,23 +50,23 @@ const femeninCategoryOptions = [
   '5ª CATEGORIA FEMENINA - GRUPO B',
   '5ª CATEGORIA FEMENINA - GRUPO C',
   '5ª CATEGORIA FEMENINA - GRUPO D',
-]
+];
 
 function categoryOptions(gender: Gender) {
   if (gender === 'MASCULINO') {
-    return masculinCategoryOptions.map(option => ({ value: option, label: option }))
+    return masculinCategoryOptions.map(option => ({ value: option, label: option }));
   }
-  return femeninCategoryOptions.map(option => ({ value: option, label: option }))
+  return femeninCategoryOptions.map(option => ({ value: option, label: option }));
 }
 
 /** Category / group picker — full width in filter rows; styles live in `Select`. */
 export function CategoryGroupSelect({ className, gender, ...props }: CategoryGroupSelectProps) {
-  const options = [placeholder, ...categoryOptions(gender)]
+  const options = [placeholder, ...categoryOptions(gender)];
   return (
     <Select
       {...props}
       className={['w-full min-w-0', className].filter(Boolean).join(' ')}
       options={options}
     />
-  )
+  );
 }

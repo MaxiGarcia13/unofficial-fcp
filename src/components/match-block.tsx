@@ -1,8 +1,8 @@
-import type { Match } from '@/types'
+import type { Match } from '@/types';
 
-export function MatchBlock({ title, matches }: { title: string, matches: Match[] }) {
+export function MatchBlock({ title, matches }: { title: string; matches: Match[] }) {
   if (matches.length === 0)
-    return null
+    return null;
   return (
     <div className="mt-6">
       <h3 className="mb-2 text-sm font-semibold text-gray-100">{title}</h3>
@@ -10,7 +10,7 @@ export function MatchBlock({ title, matches }: { title: string, matches: Match[]
         {matches.map((m, i) => (
           <li
             key={`${m.date}-${m.homeTeam}-${m.awayTeam}-${i}`}
-            className="rounded border border-gray-700/50 bg-gray-800/50 px-3 py-2"
+            className="rounded-lg border border-gray-700 bg-gray-800 px-3 py-2"
           >
             <span className="text-gray-100">
               {m.homeTeam ?? '—'}
@@ -29,5 +29,5 @@ export function MatchBlock({ title, matches }: { title: string, matches: Match[]
         ))}
       </ul>
     </div>
-  )
+  );
 }

@@ -1,7 +1,7 @@
-import type { TableColumn } from './types'
+import type { TableColumn } from './types';
 
 export interface TableHeaderProps<T extends Record<string, any>> {
-  columns: TableColumn<T>[]
+  columns: TableColumn<T>[];
 }
 
 export function TableHeader<T extends Record<string, any>>({
@@ -9,7 +9,7 @@ export function TableHeader<T extends Record<string, any>>({
 }: TableHeaderProps<T>) {
   return (
     <thead>
-      <tr className="sticky top-0 z-10 border-b border-gray-700/50 bg-gray-700 shadow-[0_1px_0_0_rgba(0,0,0,0.1)]">
+      <tr className="sticky top-0 z-10 border-b border-gray-700 bg-gray-700 shadow-[0_1px_0_0_rgba(0,0,0,0.1)]">
         {columns.map((col) => {
           return (
             <th
@@ -24,9 +24,9 @@ export function TableHeader<T extends Record<string, any>>({
                 {col.label}
               </span>
             </th>
-          )
+          );
         })}
       </tr>
     </thead>
-  )
+  );
 }

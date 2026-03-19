@@ -1,8 +1,8 @@
-import { cn } from '@/utils/classes'
+import { cn } from '@/utils/classes';
 
 export interface FieldProps extends React.HTMLAttributes<HTMLDivElement> {
-  label?: string
-  children: React.ReactNode
+  label?: string;
+  children: React.ReactNode;
 }
 
 export function Field({ label, children, id, ...props }: FieldProps) {
@@ -18,5 +18,5 @@ export function Field({ label, children, id, ...props }: FieldProps) {
       }
       {children}
     </div>
-  )
+  );
 }

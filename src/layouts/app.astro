@@ -1,6 +1,13 @@
 ---
-import { ClientRouter } from "astro:transitions";
-import "@/styles/global.css";
+import { ClientRouter } from 'astro:transitions';
+import { cn } from '@/utils/classes';
+import '@/styles/global.css';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
 ---
 
 <html>
@@ -12,11 +19,13 @@ import "@/styles/global.css";
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.png" />
+
     <ClientRouter />
   </head>
   <body class="bg-gray-950 text-gray-100 antialiased min-h-screen">
     <main
-      class="mx-auto max-w-4xl px-4 py-8 sm:py-10 min-h-screen flex flex-col"
+      class={cn('mx-auto max-w-4xl px-4 py-8 sm:py-10 min-h-screen flex flex-col', className)}
     >
       <slot />
     </main>

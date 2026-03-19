@@ -1,33 +1,33 @@
-import type { Gender } from '@/types'
-import { navigate } from 'astro:transitions/client'
-import { useState } from 'react'
-import { useParams } from '@/hooks/useParams'
-import { CategoryGroupSelect } from '../category-select'
-import { GenderSwitch } from '../gender-switch'
+import type { Gender } from '@/types';
+import { navigate } from 'astro:transitions/client';
+import { useState } from 'react';
+import { useParams } from '@/hooks/useParams';
+import { CategoryGroupSelect } from '../category-select';
+import { GenderSwitch } from '../gender-switch';
 
 export function Filters() {
-  const { params } = useParams()
+  const { params } = useParams();
 
-  const [gender, setGender] = useState<Gender>((params.get('gender') ?? 'MASCULINO') as Gender)
-  const [group, setGroup] = useState(params.get('group') ?? '')
+  const [gender, setGender] = useState<Gender>((params.get('gender') ?? 'MASCULINO') as Gender);
+  const [group, setGroup] = useState(params.get('group') ?? '');
 
   const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
-    event.preventDefault()
+    event.preventDefault();
 
     if (!group.length || !gender.length)
-      return
+      return;
 
-    navigate(`/group-info?gender=${gender}&group=${group}`)
-  }
+    navigate(`/group-info?gender=${gender}&group=${group}`);
+  };
 
   const handleGenderChange = (value: Gender) => {
-    setGender(value)
-    setGroup('')
-  }
+    setGender(value);
+    setGroup('');
+  };
 
   const handleGroupChange = (value: string) => {
-    setGroup(value)
-  }
+    setGroup(value);
+  };
 
   return (
     <form
@@ -61,5 +61,5 @@ export function Filters() {
         Buscar
       </button>
     </form>
-  )
+  );
 }

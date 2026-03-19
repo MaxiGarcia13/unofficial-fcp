@@ -1,11 +1,11 @@
-import type { HTMLAttributes } from 'react'
-import { cn } from '@/utils/classes'
+import type { HTMLAttributes } from 'react';
+import { cn } from '@/utils/classes';
 
 export interface SkeletonProps extends HTMLAttributes<HTMLDivElement> {
   /** Optional fixed width (e.g. "100%", "4rem") */
-  width?: string | number
+  width?: string | number;
   /** Optional fixed height (e.g. "1rem", "2.5rem") */
-  height?: string | number
+  height?: string | number;
 }
 
 export function Skeleton({
@@ -20,7 +20,7 @@ export function Skeleton({
       role="status"
       aria-label="Loading"
       className={cn(
-        'animate-pulse rounded bg-gray-600/50',
+        'animate-pulse rounded-lg bg-gray-600/50',
         className,
       )}
       style={{
@@ -30,5 +30,5 @@ export function Skeleton({
       }}
       {...rest}
     />
-  )
+  );
 }

@@ -1,7 +1,7 @@
-import { cn } from '@/utils/classes'
+import { cn } from '@/utils/classes';
 
 interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export function Badge({ children, ...props }: BadgeProps) {
@@ -9,7 +9,7 @@ export function Badge({ children, ...props }: BadgeProps) {
     <span
       className={
         cn(
-          'shrink-0 self-start rounded px-2.5 py-0.5',
+          'shrink-0 self-start rounded-lg px-2.5 py-0.5',
           'border border-orange-800 bg-orange-900/40 text-xs font-medium text-orange-300',
         )
       }
@@ -17,5 +17,5 @@ export function Badge({ children, ...props }: BadgeProps) {
     >
       {children}
     </span>
-  )
+  );
 }
