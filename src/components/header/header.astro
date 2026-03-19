@@ -1,18 +1,23 @@
 ---
 import type { Gender } from '@/types/gender';
+import { cn } from '@/utils/classes';
 import { Badge } from '../badge';
 import { Filters } from './filters';
 
 interface Props {
   gender?: Gender;
   group?: string;
+  class?: string;
 }
 
-const { gender, group } = Astro.props;
+const { gender, group, class: className } = Astro.props;
 ---
 
 <header
-  class="rounded-lg border border-cantabria-border bg-cantabria-surface p-6 shadow-sm sm:p-8"
+  class={cn(
+    'rounded-lg border border-cantabria-border bg-cantabria-surface p-6 shadow-sm sm:p-8',
+    className,
+  )}
   transition:name="header"
 >
   <div class="flex flex-col gap-6">

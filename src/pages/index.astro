@@ -5,6 +5,8 @@ import AppLayout from '@/layouts/app.astro';
 export const prerender = true;
 ---
 
-<AppLayout class="justify-center">
-  <Header />
+<AppLayout class="justify-center h-full">
+  <div class="flex-1 flex justify-center items-center w-full">
+    <Header class="w-full" />
+  </div>
 </AppLayout>
