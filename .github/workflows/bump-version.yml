@@ -1,0 +1,79 @@
+name: Bump version on main
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bump-version-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  bump:
+    # Avoid infinite loops when this workflow pushes a release commit.
+    if: ${{ github.actor != 'github-actions[bot]' && !startsWith(github.event.head_commit.message, 'chore(release):') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Decide bump (minor if any feat:, else patch)
+        id: bump
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git fetch --tags --force
+
+          last_tag=""
+          if git describe --tags --match "v*" --abbrev=0 >/dev/null 2>&1; then
+            last_tag="$(git describe --tags --match "v*" --abbrev=0)"
+          fi
+
+          if [[ -n "$last_tag" ]]; then
+            range="${last_tag}..HEAD"
+          else
+            range="HEAD"
+          fi
+
+          subjects="$(git log "$range" --format=%s || true)"
+
+          bump="minor"
+          if echo "$subjects" | grep -Eq '^(fix)(\(.+\))?!?:'; then
+            bump="patch"
+          fi
+
+          echo "last_tag=$last_tag" >> "$GITHUB_OUTPUT"
+          echo "range=$range" >> "$GITHUB_OUTPUT"
+          echo "bump=$bump" >> "$GITHUB_OUTPUT"
+
+      - name: Configure git author
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Bump version, commit, and tag
+        env:
+          BUMP: ${{ steps.bump.outputs.bump }}
+        run: |
+          set -euo pipefail
+          npm version "$BUMP" -m "chore(release): v%s"
+
+      - name: Push commit and tags
+        run: |
+          git push origin HEAD:main --follow-tags
