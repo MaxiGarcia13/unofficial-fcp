@@ -2,6 +2,7 @@
 import type { Gender } from '@/types';
 import { ClientRouter } from 'astro:transitions';
 import { Footer } from '@/components/footer';
+import { APP_NAME, AUTHOR_NAME, BASE_IMAGE_URL } from '@/constants/global';
 import { cn } from '@/utils/classes';
 import '@/styles/global.css';
 
@@ -37,7 +38,10 @@ function getDescription() {
   return 'Pádel Cantabria - mejora la Ui del sitio oficial de la Liga Cántabra de Pádel, fue creada con motivos educativos.';
 }
 
+const siteTitle = 'Pádel Cantabria';
 const description = getDescription();
+const canonicalUrl = Astro.url.href;
+const ogImageUrl = new URL(BASE_IMAGE_URL, Astro.url).toString();
 ---
 
 <html>
@@ -46,25 +50,35 @@ const description = getDescription();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="canonical" href={Astro.url.href} />
 
-    <title>Pádel Cantabria</title>
+    <title>{siteTitle}</title>
 
     <meta name="description" content={description} />
+    <meta name="robots" content="index,follow" />
+    <meta name="author" content={AUTHOR_NAME} />
+    <meta name="application-name" content={APP_NAME} />
+    <meta name="theme-color" content="#0f172a" />
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url.href} />
-    <meta property="og:title" content="Pádel Cantabria" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={APP_NAME} />
+    <meta property="og:title" content={siteTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL('/og-image.png', Astro.url)} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content={APP_NAME} />
     <meta property="og:locale" content="es_ES" />
 
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={Astro.url.href} />
-    <meta property="twitter:title" content="Pádel Cantabria" />
+    <meta property="twitter:url" content={canonicalUrl} />
+    <meta property="twitter:title" content={siteTitle} />
     <meta property="twitter:description" content={description} />
-    <meta
-      property="twitter:image"
-      content={new URL('/og-image.png', Astro.url)}
-    />
+
+    <meta property="linkedin:card" content="summary_large_image" />
+    <meta property="linkedin:url" content={canonicalUrl} />
+    <meta property="linkedin:title" content={siteTitle} />
+    <meta property="linkedin:description" content={description} />
+    <meta property="linkedin:image" content={ogImageUrl} />
+
+    <meta property="twitter:image" content={ogImageUrl} />
 
     <ClientRouter />
   </head>
@@ -81,3 +95,16 @@ const description = getDescription();
     </main>
   </body>
 </html>
+<script>
+  const key = 'fcp-timestamp';
+  const timestamp = localStorage.getItem(key);
+
+  const wasMoreThan5MinutesSinceLastPing =
+    timestamp && new Date(timestamp).getTime() + 5 * 60 * 1000 < Date.now();
+
+  if (wasMoreThan5MinutesSinceLastPing) {
+    fetch('/api/ping-scrapper').finally(() => {
+      localStorage.setItem(key, new Date().toISOString());
+    });
+  }
+</script>
