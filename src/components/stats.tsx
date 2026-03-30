@@ -82,6 +82,7 @@ export function Stats({
           data={playersRanking}
           loading={loading}
           error={error}
+          onRetry={fetchResult}
           emptyMessage="Sin datos de ranking de jugadores"
           fillHeight={false}
           getRowKey={row => `${row.name}-players`}
@@ -99,21 +100,12 @@ export function Stats({
           data={couplesRanking}
           loading={loading}
           error={error}
+          onRetry={fetchResult}
           emptyMessage="Sin datos de ranking de parejas"
           fillHeight={false}
           getRowKey={row => `${row.name}-couples`}
         />
       </div>
-
-      {error && (
-        <button
-          type="button"
-          onClick={() => fetchResult()}
-          className="w-fit text-sm text-cantabria-red hover:text-red-400"
-        >
-          Reintentar
-        </button>
-      )}
     </section>
   );
 }

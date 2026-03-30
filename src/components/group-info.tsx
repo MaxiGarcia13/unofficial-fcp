@@ -45,6 +45,7 @@ export function GroupInfo({ gender, group }: { gender: Gender; group: string }) 
           data={ranking}
           loading={loading}
           error={error}
+          onRetry={fetchResult}
           emptyMessage="Sin datos de clasificación"
           fillHeight={false}
           getRowKey={row => `${row.position}-${row.team}`}
@@ -53,16 +54,6 @@ export function GroupInfo({ gender, group }: { gender: Gender; group: string }) 
           }}
 
         />
-
-        {error && (
-          <button
-            type="button"
-            onClick={() => fetchResult()}
-            className="mt-3 text-sm text-cantabria-red hover:text-red-400"
-          >
-            Reintentar
-          </button>
-        )}
 
       </section>
 

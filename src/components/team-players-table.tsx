@@ -110,20 +110,11 @@ export function TeamPlayersTable({
         data={players}
         loading={loading}
         error={error}
+        onRetry={fetchResult}
         emptyMessage="Sin jugadores para este equipo"
         fillHeight={false}
         getRowKey={row => `${row.position}-${row.name}-${row.surname}`}
       />
-
-      {error && (
-        <button
-          type="button"
-          onClick={() => fetchResult()}
-          className="w-fit text-sm text-cantabria-red hover:text-red-400"
-        >
-          Reintentar
-        </button>
-      )}
     </div>
   );
 }

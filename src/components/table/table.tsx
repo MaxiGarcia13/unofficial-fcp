@@ -28,6 +28,7 @@ export function Table<T extends Record<string, any>>({
   },
   emptyMessage = 'No data',
   error = null,
+  onRetry,
   fillHeight = false,
   onRowClick,
   loading,
@@ -68,10 +69,25 @@ export function Table<T extends Record<string, any>>({
                   ))
                 : error
                   ? (
-                      <TableEmptyRow
-                        colSpan={columns.length}
-                        message={error.message}
-                      />
+                      <tr>
+                        <td
+                          colSpan={columns.length}
+                          className="px-4 py-8 text-center text-cantabria-muted"
+                        >
+                          <div className="flex flex-col items-center gap-2">
+                            <span>{error.message}</span>
+                            {onRetry && (
+                              <button
+                                type="button"
+                                onClick={onRetry}
+                                className="w-fit text-sm text-cantabria-red hover:text-red-400"
+                              >
+                                Reintentar
+                              </button>
+                            )}
+                          </div>
+                        </td>
+                      </tr>
                     )
                   : data.length === 0
                     ? (
