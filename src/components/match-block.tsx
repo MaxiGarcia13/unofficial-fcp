@@ -73,9 +73,7 @@ export function MatchBlock({
                     return;
                   }
                   navigate(
-                    `/${gender}-${group}/compare/${encodeURIComponent(
-                      m.homeTeam,
-                    )}-${encodeURIComponent(m.awayTeam)}`,
+                    `/${gender}-${group}/compare/${m.homeTeam}-${m.awayTeam}`,
                   );
                 }}
                 disabled={!m.homeTeam || !m.awayTeam}
