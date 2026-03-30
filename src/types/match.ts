@@ -10,3 +10,22 @@ export interface CalendarMatches {
   upcoming: Record<string, Match[]>;
   thisWeek: Match[];
 }
+
+export interface PlayedMatch {
+  homeTeam: string;
+  awayTeam: string;
+  score: string;
+  date: string;
+  rounds?: Round[];
+  teams?: TeamRound[];
+}
+
+export interface Round {
+  score: string;
+  players: [string, string];
+}
+
+export interface TeamRound {
+  score: string;
+  players: [string, string];
+}
