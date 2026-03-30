@@ -15,7 +15,7 @@ const { gender, group } = Astro.params as unknown as Params;
 ---
 
 <AppLayout>
-  <Header gender={gender} group={group} />
+  <Header gender={gender} group={group} filtersInitiallyOpen={false} />
 
   <GroupInfo client:only="react" gender={gender} group={group} />
 </AppLayout>

@@ -1,5 +1,6 @@
 ---
 import type { Gender } from '@/types/gender';
+import { FilterIcon } from '@/assets/icons/filter';
 import { cn } from '@/utils/classes';
 import { Filters } from './filters';
 
@@ -7,9 +8,19 @@ interface Props {
   gender?: Gender;
   group?: string;
   class?: string;
+  filtersInitiallyOpen?: boolean;
+  showFiltersToggle?: boolean;
 }
 
-const { gender, group, class: className } = Astro.props;
+const {
+  gender,
+  group,
+  class: className,
+  filtersInitiallyOpen = true,
+  showFiltersToggle = true,
+} = Astro.props;
+
+const filtersPanelId = `header-filters-${Math.random().toString(36).slice(2, 10)}`;
 ---
 
 <header
@@ -20,10 +31,8 @@ const { gender, group, class: className } = Astro.props;
   transition:name="header"
 >
   <div class="flex flex-col gap-6">
-    <div
-      class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-6"
-    >
-      <div class="flex items-center gap-3 space-y-0">
+    <div class="flex gap-4 items-center">
+      <a href="/">
         <img
           src="/favicon.png"
           alt="Liga Cántabra de Pádel"
@@ -31,16 +40,68 @@ const { gender, group, class: className } = Astro.props;
           width="56"
           height="56"
         />
-        <h1
-          class="max-w-2xl text-balance text-2xl font-bold tracking-tight text-cantabria-text sm:text-3xl"
-        >
-          Pádel Cantabria
-        </h1>
-      </div>
+      </a>
+      <h1
+        class="max-w-2xl flex-1 text-balance text-2xl font-bold tracking-tight text-cantabria-text sm:text-3xl"
+      >
+        Pádel Cantabria
+      </h1>
+      {
+        showFiltersToggle && (
+          <button
+            type="button"
+            class="rounded border border-cantabria-border p-2 text-cantabria-text transition-colors hover:bg-cantabria-surface-secondary"
+            aria-controls={filtersPanelId}
+            aria-expanded={filtersInitiallyOpen ? 'true' : 'false'}
+            aria-label={
+              filtersInitiallyOpen ? 'Ocultar filtros' : 'Mostrar filtros'
+            }
+            data-filters-toggle
+            data-label-open="Ocultar filtros"
+            data-label-closed="Mostrar filtros"
+          >
+            <FilterIcon className="h-5 w-5" />
+          </button>
+        )
+      }
     </div>
 
-    <div class="border-t border-cantabria-border pt-6">
+    <div
+      id={filtersPanelId}
+      class={cn(
+        'border-t border-cantabria-border pt-6',
+        !filtersInitiallyOpen && 'hidden',
+      )}
+    >
       <Filters client:only="react" gender={gender} group={group} />
     </div>
   </div>
 </header>
+
+<script>
+  document.querySelectorAll('[data-filters-toggle]').forEach((toggle) => {
+    if (!(toggle instanceof HTMLButtonElement)) return;
+
+    toggle.addEventListener('click', () => {
+      const panelId = toggle.getAttribute('aria-controls');
+      if (!panelId) return;
+
+      const panel = document.getElementById(panelId);
+      if (!panel) return;
+
+      const isOpen = !panel.classList.contains('hidden');
+      panel.classList.toggle('hidden', isOpen);
+
+      const nextExpanded = String(!isOpen);
+      toggle.setAttribute('aria-expanded', nextExpanded);
+
+      const openLabel = toggle.dataset.labelOpen ?? 'Hide filters';
+      const closedLabel = toggle.dataset.labelClosed ?? 'Show filters';
+      const nextLabel = !isOpen ? openLabel : closedLabel;
+      toggle.setAttribute('aria-label', nextLabel);
+
+      const label = toggle.querySelector('[data-filters-toggle-label]');
+      if (label) label.textContent = nextLabel;
+    });
+  });
+</script>
