@@ -50,7 +50,7 @@ export function MatchBlock({
   }
 
   return (
-    <div className="mt-6 overflow-hidden rounded border border-cantabria-border bg-cantabria-surface/70">
+    <div className="overflow-hidden rounded-lg border border-cantabria-border bg-cantabria-surface/70">
       <div className="flex items-center justify-between border-b border-cantabria-border bg-cantabria-dark-muted/30 px-4 py-3">
         <h3 className="text-sm font-semibold text-cantabria-text">{title}</h3>
       </div>
@@ -67,7 +67,7 @@ export function MatchBlock({
             >
               <button
                 type="button"
-                className="w-full cursor-pointer border-0 bg-transparent px-4 py-4 text-left transition hover:bg-cantabria-dark-muted/20 disabled:cursor-not-allowed disabled:opacity-50"
+                className="w-full cursor-pointer border-0 bg-transparent px-4 py-4 text-left transition-colors duration-150 hover:bg-cantabria-dark-muted/35 focus:outline-none focus-visible:bg-cantabria-dark-muted/35 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-cantabria-red/30 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-transparent"
                 onClick={() => {
                   if (!m.homeTeam || !m.awayTeam) {
                     return;

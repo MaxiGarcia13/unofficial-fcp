@@ -52,7 +52,7 @@ export function Select({
             'w-full min-w-0 cursor-pointer appearance-none rounded-lg border border-cantabria-border bg-cantabria-surface py-2.5 pl-3 pr-10',
             'text-sm text-cantabria-text',
             'transition-colors duration-150',
-            'hover:border-cantabria-dark hover:bg-cantabria-dark-muted',
+            'hover:border-cantabria-muted hover:bg-cantabria-dark-muted active:bg-cantabria-dark-muted/80',
             'focus:border-cantabria-red focus:outline-none focus:ring-1 focus:ring-cantabria-red',
             'disabled:cursor-not-allowed disabled:opacity-50',
           )}

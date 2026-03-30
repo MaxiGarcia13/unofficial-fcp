@@ -10,11 +10,11 @@ export interface Props {
 const { gender, group, teamName } = Astro.props;
 ---
 
-<section class="flex min-w-0 flex-col gap-4 w-full mt-4">
-  <div class="flex items-center gap-4">
+<section class="flex min-w-0 w-full flex-col gap-6">
+  <div class="flex flex-wrap items-center gap-3 sm:gap-4">
     <a
       href={`/${gender}-${group}`}
-      class="inline-flex items-center gap-2 rounded-lg border border-cantabria-border bg-cantabria-surface px-3 py-1.5 text-sm font-medium text-cantabria-text transition-colors hover:border-cantabria-red focus:outline-none focus:ring-2 focus:ring-cantabria-red/30"
+      class="inline-flex items-center gap-2 rounded-lg border border-cantabria-border bg-cantabria-surface px-3 py-1.5 text-sm font-medium text-cantabria-text transition-colors duration-150 hover:border-cantabria-red hover:bg-cantabria-surface-secondary active:bg-cantabria-dark-muted/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-cantabria-red/40 focus-visible:ring-offset-2 focus-visible:ring-offset-cantabria-bg"
     >
       <span aria-hidden="true" class="text-base leading-none">←</span>
       <span>Volver</span>

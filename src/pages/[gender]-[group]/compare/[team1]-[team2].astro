@@ -25,22 +25,26 @@ const { gender, group, team1, team2 } = Astro.params as unknown as Params;
     group={group}
     teamName={`${team1} vs ${team2}`}
   >
-    <div class="flex gap-4">
-      <TeamPlayersTable
-        client:only="react"
-        gender={gender}
-        group={group}
-        teamName={team1}
-        variant="compare"
-      />
+    <div class="flex min-w-0 flex-col gap-6 lg:flex-row lg:items-start lg:gap-6">
+      <div class="min-w-0 flex-1">
+        <TeamPlayersTable
+          client:only="react"
+          gender={gender}
+          group={group}
+          teamName={team1}
+          variant="compare"
+        />
+      </div>
 
-      <TeamPlayersTable
-        client:only="react"
-        gender={gender}
-        group={group}
-        teamName={team2}
-        variant="compare"
-      />
+      <div class="min-w-0 flex-1">
+        <TeamPlayersTable
+          client:only="react"
+          gender={gender}
+          group={group}
+          teamName={team2}
+          variant="compare"
+        />
+      </div>
     </div>
 
     <TeamStatsCompare

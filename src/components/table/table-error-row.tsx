@@ -17,7 +17,7 @@ export function TableErrorRow({ colSpan, message, onRetry }: TableErrorRowProps)
             <button
               type="button"
               onClick={onRetry}
-              className="w-fit text-sm text-cantabria-red hover:text-red-400"
+              className="w-fit rounded-lg border border-cantabria-border bg-cantabria-surface px-3 py-1.5 text-sm font-medium text-cantabria-red transition-colors duration-150 hover:border-cantabria-red hover:bg-cantabria-surface-secondary hover:text-red-300 active:bg-cantabria-dark-muted/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-cantabria-red/50 focus-visible:ring-offset-2 focus-visible:ring-offset-cantabria-surface"
             >
               Reintentar
             </button>

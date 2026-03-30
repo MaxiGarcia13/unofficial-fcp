@@ -95,7 +95,7 @@ export function TeamPlayersTable({
   return (
     <div className="h-full w-full">
       {!loading && !error && players.length > 0 && (
-        <div className="mt-3 text-right text-sm mb-2">
+        <div className="mb-3 flex justify-end text-sm">
           <span className="text-cantabria-muted">Total:</span>
           {' '}
           <span className="font-semibold text-cantabria-text">

@@ -16,7 +16,7 @@ export function TableRow<T extends Record<string, any>>({
   return (
     <tr
       className={cn(
-        'border-b border-cantabria-border/50 transition-colors hover:bg-cantabria-dark-muted/30',
+        'border-b border-cantabria-border/50 transition-colors duration-150 hover:bg-cantabria-dark-muted/30',
         onRowClick && 'cursor-pointer',
       )}
       onClick={onRowClick ? () => onRowClick(row) : undefined}

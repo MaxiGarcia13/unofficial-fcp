@@ -95,7 +95,7 @@ export function Filters(props: { gender?: Gender; group?: string }) {
 
       <button
         type="submit"
-        className="shrink-0 cursor-pointer rounded-lg bg-cantabria-red px-5 py-2.5 text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-cantabria-red focus:ring-offset-2 focus:ring-offset-cantabria-surface sm:self-end"
+        className="shrink-0 cursor-pointer rounded-lg bg-cantabria-red px-5 py-2.5 text-sm font-medium text-white transition-colors duration-150 hover:bg-red-700 active:bg-red-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-cantabria-red focus-visible:ring-offset-2 focus-visible:ring-offset-cantabria-surface sm:self-end"
       >
         Buscar
       </button>
