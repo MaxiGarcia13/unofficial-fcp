@@ -21,6 +21,8 @@ const {
 } = Astro.props;
 
 const filtersPanelId = `header-filters-${Math.random().toString(36).slice(2, 10)}`;
+const selectedGender = gender ?? 'MASCULINO';
+const selectedGroup = group?.length ? group : 'Sin grupo';
 ---
 
 <header
@@ -67,6 +69,18 @@ const filtersPanelId = `header-filters-${Math.random().toString(36).slice(2, 10)
     </div>
 
     <div
+      data-filters-summary
+      class={cn(
+        'border-t border-cantabria-border pt-6 text-xs font-medium text-cantabria-red',
+        filtersInitiallyOpen && 'hidden',
+      )}
+    >
+      {selectedGender}
+      {'>'}
+      {selectedGroup}
+    </div>
+
+    <div
       id={filtersPanelId}
       class={cn(
         'border-t border-cantabria-border pt-6',
@@ -79,29 +93,48 @@ const filtersPanelId = `header-filters-${Math.random().toString(36).slice(2, 10)
 </header>
 
 <script>
-  document.querySelectorAll('[data-filters-toggle]').forEach((toggle) => {
-    if (!(toggle instanceof HTMLButtonElement)) return;
+  function setupFiltersToggle() {
+    document.querySelectorAll('[data-filters-toggle]').forEach((toggle) => {
+      if (!(toggle instanceof HTMLButtonElement)) return;
 
-    toggle.addEventListener('click', () => {
       const panelId = toggle.getAttribute('aria-controls');
       if (!panelId) return;
 
       const panel = document.getElementById(panelId);
       if (!panel) return;
 
-      const isOpen = !panel.classList.contains('hidden');
-      panel.classList.toggle('hidden', isOpen);
+      const summary = panel.parentElement?.querySelector(
+        '[data-filters-summary]',
+      );
+      const setExpandedState = (expanded) => {
+        panel.classList.toggle('hidden', !expanded);
+        if (summary) summary.classList.toggle('hidden', expanded);
 
-      const nextExpanded = String(!isOpen);
-      toggle.setAttribute('aria-expanded', nextExpanded);
+        const nextExpanded = String(expanded);
+        toggle.setAttribute('aria-expanded', nextExpanded);
 
-      const openLabel = toggle.dataset.labelOpen ?? 'Hide filters';
-      const closedLabel = toggle.dataset.labelClosed ?? 'Show filters';
-      const nextLabel = !isOpen ? openLabel : closedLabel;
-      toggle.setAttribute('aria-label', nextLabel);
+        const openLabel = toggle.dataset.labelOpen ?? 'Hide filters';
+        const closedLabel = toggle.dataset.labelClosed ?? 'Show filters';
+        const nextLabel = expanded ? openLabel : closedLabel;
+        toggle.setAttribute('aria-label', nextLabel);
 
-      const label = toggle.querySelector('[data-filters-toggle-label]');
-      if (label) label.textContent = nextLabel;
+        const label = toggle.querySelector('[data-filters-toggle-label]');
+        if (label) label.textContent = nextLabel;
+      };
+
+      // Keep DOM state in sync with server-rendered prop on load/swap.
+      setExpandedState(toggle.getAttribute('aria-expanded') === 'true');
+
+      if (toggle.dataset.toggleBound === 'true') return;
+      toggle.dataset.toggleBound = 'true';
+
+      toggle.addEventListener('click', () => {
+        const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+        setExpandedState(!isOpen);
+      });
     });
-  });
+  }
+
+  setupFiltersToggle();
+  document.addEventListener('astro:page-load', setupFiltersToggle);
 </script>
