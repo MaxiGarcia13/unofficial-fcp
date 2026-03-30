@@ -86,7 +86,7 @@ export function MatchBlock({
 
                 <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4">
                   <div className="flex items-center justify-end gap-2 text-right">
-                    <span className="truncate text-base font-medium text-cantabria-text max-w-[250px]">
+                    <span className="truncate text-base font-medium text-cantabria-text max-w-[100px] md:max-w-[250px]">
                       {m.homeTeam ?? EMPTY_VALUE}
                     </span>
                     <Avatar tone="neutral">{getTeamInitials(m.homeTeam)}</Avatar>
@@ -98,7 +98,7 @@ export function MatchBlock({
 
                   <div className="flex items-center gap-2">
                     <Avatar tone="accent">{getTeamInitials(m.awayTeam)}</Avatar>
-                    <span className="truncate text-base font-medium text-cantabria-text max-w-[250px]">
+                    <span className="truncate text-base font-medium text-cantabria-text max-w-[100px] md:max-w-[250px]">
                       {m.awayTeam ?? EMPTY_VALUE}
                     </span>
                   </div>
