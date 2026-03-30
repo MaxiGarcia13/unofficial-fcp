@@ -25,7 +25,7 @@ const { gender, group, team1, team2 } = Astro.params as unknown as Params;
     group={group}
     teamName={`${team1} vs ${team2}`}
   >
-    <div class="flex gap-4 mt-4">
+    <div class="flex gap-4">
       <TeamPlayersTable
         client:only="react"
         gender={gender}

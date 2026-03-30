@@ -78,7 +78,7 @@ export function TeamStatsCompare({
   );
 
   return (
-    <section className="mt-8 flex flex-col gap-8">
+    <section className="flex flex-col gap-4">
       <div className="flex flex-col gap-3">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold text-cantabria-text">
