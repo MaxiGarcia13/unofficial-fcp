@@ -1,6 +1,7 @@
 ---
 import type { Gender } from '@/types';
 import { Header } from '@/components/header';
+import { TeamStatsCompare } from '@/components/stats/team-stats-compare';
 import { TeamPlayersTable } from '@/components/team-players-table';
 import AppLayout from '@/layouts/app.astro';
 import TeamInfoLayout from '@/layouts/team-info.astro';
@@ -41,5 +42,13 @@ const { gender, group, team1, team2 } = Astro.params as unknown as Params;
         variant="compare"
       />
     </div>
+
+    <TeamStatsCompare
+      client:only="react"
+      gender={gender}
+      group={group}
+      team1Name={team1}
+      team2Name={team2}
+    />
   </TeamInfoLayout>
 </AppLayout>

@@ -1,51 +1,11 @@
-import type { TableColumn } from '@/components/table/types';
+import type { RankingRow, StatsResponse } from './stats-ranking';
 import type { Gender } from '@/types';
 import { Table } from '@/components/table/table';
 import { useResults } from '@/hooks/use-results';
 import { request } from '@/utils/request';
+import { rankingColumns, withBalance } from './stats-ranking';
 
-interface RankingEntry {
-  name: string;
-  wonGames: number;
-  lostGames: number;
-}
-
-interface StatsResponse {
-  playersRanking: RankingEntry[];
-  couplesRanking: RankingEntry[];
-}
-
-interface StatsRow extends RankingEntry {
-  balance: number;
-}
-
-const rankingColumns: TableColumn<StatsRow>[] = [
-  {
-    key: 'name',
-    label: 'Nombre',
-  },
-  {
-    key: 'wonGames',
-    label: 'Ganados',
-  },
-  {
-    key: 'lostGames',
-    label: 'Perdidos',
-  },
-  {
-    key: 'balance',
-    label: 'Balance',
-  },
-];
-
-function withBalance(ranking: RankingEntry[]): StatsRow[] {
-  return (ranking ?? []).map(entry => ({
-    ...entry,
-    balance: entry.wonGames - entry.lostGames,
-  }));
-}
-
-export function Stats({
+export function TeamStats({
   gender,
   group,
   teamName,
@@ -73,10 +33,10 @@ export function Stats({
     <section className="mt-6 flex flex-col gap-6">
       <div>
         <h2 className="mb-3 text-lg font-semibold text-cantabria-text">
-          Quien gana más partidos?
+          Mejores jugadores
         </h2>
 
-        <Table<StatsRow>
+        <Table<RankingRow>
           className="w-full"
           columns={rankingColumns}
           data={playersRanking}
@@ -91,10 +51,10 @@ export function Stats({
 
       <div>
         <h2 className="mb-3 text-lg font-semibold text-cantabria-text">
-          Que pareja gana más partidos?
+          Mejores parejas
         </h2>
 
-        <Table<StatsRow>
+        <Table<RankingRow>
           className="w-full"
           columns={rankingColumns}
           data={couplesRanking}

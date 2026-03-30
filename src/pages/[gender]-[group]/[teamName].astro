@@ -1,7 +1,7 @@
 ---
 import type { Gender } from '@/types';
 import { Header } from '@/components/header';
-import { Stats } from '@/components/stats';
+import { TeamStats } from '@/components/stats/team-stats';
 import { TeamPlayersTable } from '@/components/team-players-table';
 import AppLayout from '@/layouts/app.astro';
 import TeamInfoLayout from '@/layouts/team-info.astro';
@@ -27,7 +27,7 @@ const { gender, group, teamName } = Astro.params as unknown as Params;
       group={group}
       teamName={teamName}
     />
-    <Stats
+    <TeamStats
       client:only="react"
       gender={gender}
       group={group}
