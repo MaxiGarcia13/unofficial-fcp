@@ -19,7 +19,7 @@ const { gender, group, team1, team2 } = Astro.params as unknown as Params;
 ---
 
 <AppLayout>
-  <Header gender={gender} group={group} />
+  <Header gender={gender} group={group} filtersInitiallyOpen={false} />
   <TeamInfoLayout
     gender={gender}
     group={group}
