@@ -87,7 +87,7 @@ export function TeamStatsCompare({
           <span className="text-sm text-cantabria-muted">{playersComparison}</span>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
           <div>
             <h3 className="mb-2 font-medium text-cantabria-text">{team1Name}</h3>
             <Table<RankingRow>
@@ -128,7 +128,7 @@ export function TeamStatsCompare({
           <span className="text-sm text-cantabria-muted">{couplesComparison}</span>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
           <div>
             <h3 className="mb-2 font-medium text-cantabria-text">{team1Name}</h3>
             <Table<RankingRow>
