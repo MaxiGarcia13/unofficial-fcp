@@ -6,3 +6,7 @@ export interface Player {
   side?: 'left' | 'right' | 'both';
   status?: 'present' | 'absent' | `tanda-${number}`;
 }
+
+export interface TeamResponse {
+  players: Player[];
+}
