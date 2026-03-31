@@ -1,12 +1,8 @@
 import type { TableColumn } from '@/components/table/types';
-import type { Gender, Player } from '@/types';
+import type { Gender, Player, TeamResponse } from '@/types';
 import { Table } from '@/components/table/table';
 import { useResults } from '@/hooks/use-results';
 import { request } from '@/utils/request';
-
-interface TeamResponse {
-  players: Player[];
-}
 
 const playerColumns: TableColumn<Player>[] = [
   {
