@@ -1,5 +1,7 @@
 ---
 import type { Gender } from '@/types';
+import { ArrowLeftIcon } from '@/assets/icons/arrow-left';
+import { SparklesIcon } from '@/assets/icons/sparkles';
 import GroupInfoLayout from '@/layouts/group-info.astro';
 
 export interface Props {
@@ -12,17 +14,28 @@ const { gender, group, teamName } = Astro.props;
 ---
 
 <GroupInfoLayout gender={gender} group={group}>
-  <div class="flex flex-wrap items-center gap-3 sm:gap-4">
-    <a
-      href={`/${gender}-${group}`}
-      class="inline-flex items-center gap-2 rounded-lg border border-cantabria-border bg-cantabria-surface px-3 py-1.5 text-sm font-medium text-cantabria-text transition-colors duration-150 hover:border-cantabria-red hover:bg-cantabria-surface-secondary active:bg-cantabria-dark-muted/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-cantabria-red/40 focus-visible:ring-offset-2 focus-visible:ring-offset-cantabria-bg"
-    >
-      <span aria-hidden="true" class="text-base leading-none">←</span>
-      <span>Volver</span>
-    </a>
+  <div class="flex flex-wrap justify-between items-center gap-3 sm:gap-4">
+    <div class="flex gap-3 flex-wrap items-center">
+      <a
+        href={`/${gender}-${group}`}
+        class="inline-flex items-center gap-2 rounded-lg border cursor-pointer border-cantabria-border bg-cantabria-surface px-3 py-2.5 text-sm font-medium text-cantabria-text transition-colors duration-150 hover:border-cantabria-red hover:bg-cantabria-surface-secondary active:bg-cantabria-dark-muted/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-cantabria-red/40 focus-visible:ring-offset-2 focus-visible:ring-offset-cantabria-bg"
+      >
+        <ArrowLeftIcon className="w-4 h-4" />
+      </a>
 
-    <h1 class="text-2xl font-semibold text-cantabria-text">{teamName}</h1>
+      <h2 class="text-md md:text-xl font-semibold text-cantabria-text">
+        {teamName}
+      </h2>
+    </div>
+    <button
+      class="shrink-0 cursor-pointer rounded-lg flex items-center gap-2 bg-cantabria-red px-5 py-2.5 text-sm font-medium text-white transition-colors duration-150 hover:bg-red-700 active:bg-red-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-cantabria-red focus-visible:ring-offset-2 focus-visible:ring-offset-cantabria-surface sm:self-end"
+    >
+      <SparklesIcon className="w-4 h-4" />
+      <span>Generar alineación</span>
+    </button>
   </div>
 
-  <slot />
+  <div class="mt-6">
+    <slot />
+  </div>
 </GroupInfoLayout>
