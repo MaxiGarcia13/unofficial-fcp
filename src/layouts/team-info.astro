@@ -1,5 +1,6 @@
 ---
 import type { Gender } from '@/types';
+import GroupInfoLayout from '@/layouts/group-info.astro';
 
 export interface Props {
   gender: Gender;
@@ -10,7 +11,7 @@ export interface Props {
 const { gender, group, teamName } = Astro.props;
 ---
 
-<section class="flex min-w-0 w-full flex-col gap-6">
+<GroupInfoLayout gender={gender} group={group}>
   <div class="flex flex-wrap items-center gap-3 sm:gap-4">
     <a
       href={`/${gender}-${group}`}
@@ -24,4 +25,4 @@ const { gender, group, teamName } = Astro.props;
   </div>
 
   <slot />
-</section>
+</GroupInfoLayout>

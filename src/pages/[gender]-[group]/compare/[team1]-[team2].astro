@@ -1,9 +1,7 @@
 ---
 import type { Gender } from '@/types';
-import { Header } from '@/components/header';
 import { TeamStatsCompare } from '@/components/stats/team-stats-compare';
 import { TeamPlayersTable } from '@/components/team-players-table';
-import AppLayout from '@/layouts/app.astro';
 import TeamInfoLayout from '@/layouts/team-info.astro';
 
 export const prerender = false;
@@ -18,37 +16,30 @@ interface Params {
 const { gender, group, team1, team2 } = Astro.params as unknown as Params;
 ---
 
-<AppLayout>
-  <Header gender={gender} group={group} filtersInitiallyOpen={false} />
-  <TeamInfoLayout
-    gender={gender}
-    group={group}
-    teamName={`${team1} vs ${team2}`}
-  >
-    <div class="flex min-w-0 gap-6">
-        <TeamPlayersTable
-          client:only="react"
-          gender={gender}
-          group={group}
-          teamName={team1}
-          variant="compare"
-        />
-
-        <TeamPlayersTable
-          client:only="react"
-          gender={gender}
-          group={group}
-          teamName={team2}
-          variant="compare"
-        />
-    </div>
-
-    <TeamStatsCompare
+<TeamInfoLayout gender={gender} group={group} teamName={`${team1} vs ${team2}`}>
+  <div class="flex gap-6">
+    <TeamPlayersTable
       client:only="react"
       gender={gender}
       group={group}
-      team1Name={team1}
-      team2Name={team2}
+      teamName={team1}
+      variant="compare"
     />
-  </TeamInfoLayout>
-</AppLayout>
+
+    <TeamPlayersTable
+      client:only="react"
+      gender={gender}
+      group={group}
+      teamName={team2}
+      variant="compare"
+    />
+  </div>
+
+  <TeamStatsCompare
+    client:only="react"
+    gender={gender}
+    group={group}
+    team1Name={team1}
+    team2Name={team2}
+  />
+</TeamInfoLayout>

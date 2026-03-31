@@ -1,0 +1,16 @@
+---
+import type { Gender } from '@/types';
+import TeamInfoLayout from '@/layouts/team-info.astro';
+
+export const prerender = false;
+
+interface Params {
+  gender: Gender;
+  group: string;
+  teamName: string;
+}
+
+const { gender, group, teamName } = Astro.params as unknown as Params;
+---
+
+<TeamInfoLayout gender={gender} group={group} teamName={teamName} />

@@ -1,0 +1,18 @@
+---
+import type { Gender } from '@/types';
+import { Header } from '@/components/header';
+import AppLayout from '@/layouts/app.astro';
+
+export interface Props {
+  gender: Gender;
+  group: string;
+}
+
+const { gender, group } = Astro.props;
+---
+
+<AppLayout>
+  <Header gender={gender} group={group} filtersInitiallyOpen={false} />
+
+  <slot />
+</AppLayout>
