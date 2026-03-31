@@ -95,11 +95,13 @@ export function TeamPlayersTable({
   return (
     <div className="h-full w-full">
       {!loading && !error && players.length > 0 && (
-        <div className="mb-3 flex justify-end text-sm">
+        <div className="mb-3 flex justify-end text-sm gap-1">
           <span className="text-cantabria-muted">Total:</span>
-          {' '}
+
           <span className="font-semibold text-cantabria-text">
             {totalPoints}
+            {' '}
+            pts.
           </span>
         </div>
       )}
