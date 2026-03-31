@@ -3,9 +3,10 @@ import { cn } from '@/utils/classes';
 export interface FieldProps extends React.HTMLAttributes<HTMLDivElement> {
   label?: string;
   children: React.ReactNode;
+  error?: string;
 }
 
-export function Field({ label, children, id, ...props }: FieldProps) {
+export function Field({ label, children, id, error, ...props }: FieldProps) {
   return (
     <div className={cn('block text-cantabria-muted', props.className)} {...props}>
       {
@@ -17,6 +18,8 @@ export function Field({ label, children, id, ...props }: FieldProps) {
         )
       }
       {children}
+
+      {error && <p className="text-sm text-cantabria-red mt-1">{error}</p>}
     </div>
   );
 }
