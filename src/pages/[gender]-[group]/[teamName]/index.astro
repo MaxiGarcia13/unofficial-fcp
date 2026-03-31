@@ -15,7 +15,12 @@ interface Params {
 const { gender, group, teamName } = Astro.params as unknown as Params;
 ---
 
-<TeamInfoLayout gender={gender} group={group} teamName={teamName}>
+<TeamInfoLayout
+  gender={gender}
+  group={group}
+  teamName={teamName}
+  showGenerateAlignment
+>
   <TeamPlayersTable
     client:only="react"
     gender={gender}

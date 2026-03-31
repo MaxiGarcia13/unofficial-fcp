@@ -1,5 +1,6 @@
 ---
 import type { Gender } from '@/types';
+import { LineupForm } from '@/components/lineup-form';
 import TeamInfoLayout from '@/layouts/team-info.astro';
 
 export const prerender = false;
@@ -13,4 +14,17 @@ interface Params {
 const { gender, group, teamName } = Astro.params as unknown as Params;
 ---
 
-<TeamInfoLayout gender={gender} group={group} teamName={teamName} />
+<TeamInfoLayout
+  gender={gender}
+  group={group}
+  teamName={teamName}
+  title={`${teamName} - Alineación`}
+  backUrl={`/${gender}-${group}/${teamName}`}
+>
+  <LineupForm
+    client:only="react"
+    gender={gender}
+    group={group}
+    teamName={teamName}
+  />
+</TeamInfoLayout>

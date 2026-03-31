@@ -9,31 +9,43 @@ export interface Props {
   group: string;
   teamName: string;
   showGenerateAlignment?: boolean;
+  title?: string;
+  backUrl?: string;
 }
 
-const { gender, group, teamName, showGenerateAlignment = false } = Astro.props;
+const {
+  gender,
+  group,
+  teamName,
+  showGenerateAlignment = false,
+  title = teamName,
+  backUrl = `/${gender}-${group}`,
+} = Astro.props;
 ---
 
 <GroupInfoLayout gender={gender} group={group}>
   <div class="flex flex-wrap justify-between items-center gap-3">
     <div class="flex gap-3 flex-wrap items-center">
       <a
-        href={`/${gender}-${group}`}
+        href={backUrl}
         class="inline-flex items-center gap-2 rounded-lg border cursor-pointer border-cantabria-border bg-cantabria-surface px-3 py-2.5 text-sm font-medium text-cantabria-text transition-colors duration-150 hover:border-cantabria-red hover:bg-cantabria-surface-secondary active:bg-cantabria-dark-muted/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-cantabria-red/40 focus-visible:ring-offset-2 focus-visible:ring-offset-cantabria-bg"
       >
         <ArrowLeftIcon className="w-4 h-4" />
       </a>
 
       <h2 class="text-md md:text-xl font-semibold text-cantabria-text">
-        {teamName}
+        {title}
       </h2>
     </div>
     {
       showGenerateAlignment && (
-        <button class="shrink-0 cursor-pointer rounded-lg flex items-center gap-2 bg-cantabria-red px-5 py-2.5 text-sm font-medium text-white transition-colors duration-150 hover:bg-red-700 active:bg-red-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-cantabria-red focus-visible:ring-offset-2 focus-visible:ring-offset-cantabria-surface sm:self-end">
+        <a
+          href={`/${gender}-${group}/${teamName}/lineup`}
+          class="shrink-0 cursor-pointer rounded-lg flex items-center gap-2 bg-cantabria-red px-5 py-2.5 text-sm font-medium text-white transition-colors duration-150 hover:bg-red-700 active:bg-red-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-cantabria-red focus-visible:ring-offset-2 focus-visible:ring-offset-cantabria-surface sm:self-end"
+        >
           <SparklesIcon className="w-4 h-4" />
           <span>Generar alineación</span>
-        </button>
+        </a>
       )
     }
   </div>
