@@ -86,7 +86,7 @@ export function Filters(props: { gender?: Gender; group?: string }) {
       <div className="min-w-0 flex-1 sm:min-w-48">
         <CategoryGroupSelect
           name="group"
-          label="Grupo / categoría"
+          label="Grupo / Categoría"
           gender={gender}
           value={group}
           onChange={handleGroupChange}

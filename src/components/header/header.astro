@@ -1,5 +1,6 @@
 ---
 import type { Gender } from '@/types/gender';
+import { ChevronRightIcon } from '@/assets/icons/chevron-right';
 import { FilterIcon } from '@/assets/icons/filter';
 import { cn } from '@/utils/classes';
 import { Filters } from './filters';
@@ -71,12 +72,15 @@ const selectedGroup = group?.length ? group : 'Sin grupo';
     <div
       data-filters-summary
       class={cn(
+        'flex items-center',
         'border-t border-cantabria-border pt-6 text-xs font-medium text-cantabria-muted',
         filtersInitiallyOpen && 'hidden',
       )}
     >
       {selectedGender}
-      {'>'}
+
+      <ChevronRightIcon className="w-4 h-4" />
+
       {selectedGroup}
     </div>
 
