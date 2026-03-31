@@ -78,7 +78,7 @@ export function TeamStatsCompare({
   );
 
   return (
-    <section className="flex flex-col gap-4">
+    <section className="flex flex-col gap-4 mt-6">
       <div className="flex flex-col gap-3">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold text-cantabria-text">
@@ -88,35 +88,31 @@ export function TeamStatsCompare({
         </div>
 
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-          <div>
-            <h3 className="mb-2 font-medium text-cantabria-text">{team1Name}</h3>
-            <Table<RankingRow>
-              className="w-full"
-              columns={rankingColumns}
-              data={team1Players}
-              loading={team1.loading}
-              error={team1.error}
-              onRetry={team1.fetchResult}
-              emptyMessage="Sin ranking de jugadores"
-              fillHeight={false}
-              getRowKey={row => `${row.name}-players-team1`}
-            />
-          </div>
 
-          <div>
-            <h3 className="mb-2 font-medium text-cantabria-text">{team2Name}</h3>
-            <Table<RankingRow>
-              className="w-full"
-              columns={rankingColumns}
-              data={team2Players}
-              loading={team2.loading}
-              error={team2.error}
-              onRetry={team2.fetchResult}
-              emptyMessage="Sin ranking de jugadores"
-              fillHeight={false}
-              getRowKey={row => `${row.name}-players-team2`}
-            />
-          </div>
+          <Table<RankingRow>
+            className="w-full"
+            columns={rankingColumns}
+            data={team1Players}
+            loading={team1.loading}
+            error={team1.error}
+            onRetry={team1.fetchResult}
+            emptyMessage="Sin ranking de jugadores"
+            fillHeight={false}
+            getRowKey={row => `${row.name}-players-team1`}
+          />
+
+          <Table<RankingRow>
+            className="w-full"
+            columns={rankingColumns}
+            data={team2Players}
+            loading={team2.loading}
+            error={team2.error}
+            onRetry={team2.fetchResult}
+            emptyMessage="Sin ranking de jugadores"
+            fillHeight={false}
+            getRowKey={row => `${row.name}-players-team2`}
+          />
+
         </div>
       </div>
 
@@ -129,35 +125,30 @@ export function TeamStatsCompare({
         </div>
 
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-          <div>
-            <h3 className="mb-2 font-medium text-cantabria-text">{team1Name}</h3>
-            <Table<RankingRow>
-              className="w-full"
-              columns={rankingColumns}
-              data={team1Couples}
-              loading={team1.loading}
-              error={team1.error}
-              onRetry={team1.fetchResult}
-              emptyMessage="Sin ranking de parejas"
-              fillHeight={false}
-              getRowKey={row => `${row.name}-couples-team1`}
-            />
-          </div>
 
-          <div>
-            <h3 className="mb-2 font-medium text-cantabria-text">{team2Name}</h3>
-            <Table<RankingRow>
-              className="w-full"
-              columns={rankingColumns}
-              data={team2Couples}
-              loading={team2.loading}
-              error={team2.error}
-              onRetry={team2.fetchResult}
-              emptyMessage="Sin ranking de parejas"
-              fillHeight={false}
-              getRowKey={row => `${row.name}-couples-team2`}
-            />
-          </div>
+          <Table<RankingRow>
+            className="w-full"
+            columns={rankingColumns}
+            data={team1Couples}
+            loading={team1.loading}
+            error={team1.error}
+            onRetry={team1.fetchResult}
+            emptyMessage="Sin ranking de parejas"
+            fillHeight={false}
+            getRowKey={row => `${row.name}-couples-team1`}
+          />
+
+          <Table<RankingRow>
+            className="w-full"
+            columns={rankingColumns}
+            data={team2Couples}
+            loading={team2.loading}
+            error={team2.error}
+            onRetry={team2.fetchResult}
+            emptyMessage="Sin ranking de parejas"
+            fillHeight={false}
+            getRowKey={row => `${row.name}-couples-team2`}
+          />
         </div>
       </div>
     </section>
