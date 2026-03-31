@@ -8,9 +8,10 @@ export interface Props {
   gender: Gender;
   group: string;
   teamName: string;
+  showGenerateAlignment?: boolean;
 }
 
-const { gender, group, teamName } = Astro.props;
+const { gender, group, teamName, showGenerateAlignment = false } = Astro.props;
 ---
 
 <GroupInfoLayout gender={gender} group={group}>
@@ -27,12 +28,14 @@ const { gender, group, teamName } = Astro.props;
         {teamName}
       </h2>
     </div>
-    <button
-      class="shrink-0 cursor-pointer rounded-lg flex items-center gap-2 bg-cantabria-red px-5 py-2.5 text-sm font-medium text-white transition-colors duration-150 hover:bg-red-700 active:bg-red-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-cantabria-red focus-visible:ring-offset-2 focus-visible:ring-offset-cantabria-surface sm:self-end"
-    >
-      <SparklesIcon className="w-4 h-4" />
-      <span>Generar alineación</span>
-    </button>
+    {
+      showGenerateAlignment && (
+        <button class="shrink-0 cursor-pointer rounded-lg flex items-center gap-2 bg-cantabria-red px-5 py-2.5 text-sm font-medium text-white transition-colors duration-150 hover:bg-red-700 active:bg-red-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-cantabria-red focus-visible:ring-offset-2 focus-visible:ring-offset-cantabria-surface sm:self-end">
+          <SparklesIcon className="w-4 h-4" />
+          <span>Generar alineación</span>
+        </button>
+      )
+    }
   </div>
 
   <slot />
