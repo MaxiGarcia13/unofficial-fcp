@@ -14,7 +14,7 @@ const { gender, group, teamName } = Astro.props;
 ---
 
 <GroupInfoLayout gender={gender} group={group}>
-  <div class="flex flex-wrap justify-between items-center gap-3 sm:gap-4">
+  <div class="flex flex-wrap justify-between items-center gap-3">
     <div class="flex gap-3 flex-wrap items-center">
       <a
         href={`/${gender}-${group}`}
@@ -35,7 +35,5 @@ const { gender, group, teamName } = Astro.props;
     </button>
   </div>
 
-  <div class="mt-6">
-    <slot />
-  </div>
+  <slot />
 </GroupInfoLayout>
