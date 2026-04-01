@@ -13,6 +13,7 @@ export function LineupForm({ gender, group, teamName }: LineupFormProps) {
     roundsError,
     hasValidRounds,
     roundOptions,
+    shouldShowRoundsStep,
     shouldShowPlayersStep,
     shouldShowSummaryStep,
     shouldShowGeneratedLayer,
@@ -21,19 +22,22 @@ export function LineupForm({ gender, group, teamName }: LineupFormProps) {
     onPlayerChange,
     onPlayersPageChange,
     onSeeSummary,
+    onBackToRounds,
     onBackToPlayers,
     onGenerateLineup,
   } = useLineupFormState({ gender, group, teamName });
 
   return (
     <div className="flex flex-col gap-6">
-      <RoundsStep
-        rounds={rounds}
-        roundsError={roundsError}
-        hasValidRounds={hasValidRounds}
-        onRoundsChange={onRoundsChange}
-        onNextStep={onNextStep}
-      />
+      {shouldShowRoundsStep && (
+        <RoundsStep
+          rounds={rounds}
+          roundsError={roundsError}
+          hasValidRounds={hasValidRounds}
+          onRoundsChange={onRoundsChange}
+          onNextStep={onNextStep}
+        />
+      )}
 
       <PlayersStep
         gender={gender}
@@ -46,6 +50,7 @@ export function LineupForm({ gender, group, teamName }: LineupFormProps) {
         onPlayerChange={onPlayerChange}
         onPlayersPageChange={onPlayersPageChange}
         onSeeSummary={onSeeSummary}
+        onBackToRounds={onBackToRounds}
       />
 
       {shouldShowSummaryStep && (

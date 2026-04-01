@@ -22,6 +22,7 @@ interface PlayersStepProps {
   onPlayerChange: (player: Player) => void;
   onPlayersPageChange: (page: number) => void;
   onSeeSummary: () => void;
+  onBackToRounds: () => void;
 }
 
 export function PlayersStep({
@@ -35,6 +36,7 @@ export function PlayersStep({
   onPlayerChange,
   onPlayersPageChange,
   onSeeSummary,
+  onBackToRounds,
 }: PlayersStepProps) {
   const { data, error, loading, fetchResult } = useResults<{ players: Player[] }>(
     () =>
@@ -135,10 +137,12 @@ export function PlayersStep({
         <button
           type="button"
           className="rounded border border-cantabria-border bg-cantabria-surface px-4 py-2 text-sm font-medium text-cantabria-text disabled:cursor-not-allowed disabled:opacity-50"
-          disabled={boundedPlayersPage === 0}
-          onClick={() => onPlayersPageChange(boundedPlayersPage - 1)}
+          disabled={playersPageCount === 0}
+          onClick={boundedPlayersPage === 0
+            ? onBackToRounds
+            : () => onPlayersPageChange(boundedPlayersPage - 1)}
         >
-          Anterior
+          {boundedPlayersPage === 0 ? 'Volver a tandas' : 'Anterior'}
         </button>
 
         <button
