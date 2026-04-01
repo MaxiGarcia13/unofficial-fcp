@@ -1,6 +1,6 @@
 import type { Step } from './types';
 import type { Player } from '@/types';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { parseUrlNavigationState } from './url.utils';
 import { validateRounds } from './validation.utils';
 
@@ -85,7 +85,8 @@ export function useLineupFormState({ gender, group, teamName }: UseLineupFormSta
     roundsError,
     hasValidRounds,
     roundOptions,
-    shouldShowPlayersStep: hasValidRounds && (currentStep === 'players' || currentStep === 'generated'),
+    shouldShowRoundsStep: currentStep === 'rounds',
+    shouldShowPlayersStep: hasValidRounds && currentStep === 'players',
     shouldShowSummaryStep: hasValidRounds && currentStep === 'summary',
     shouldShowGeneratedLayer: hasValidRounds && currentStep === 'generated',
     onRoundsChange: (value: string) => {
@@ -118,6 +119,9 @@ export function useLineupFormState({ gender, group, teamName }: UseLineupFormSta
     },
     onSeeSummary: () => {
       setCurrentStep('summary');
+    },
+    onBackToRounds: () => {
+      setCurrentStep('rounds');
     },
     onBackToPlayers: () => {
       setCurrentStep('players');
