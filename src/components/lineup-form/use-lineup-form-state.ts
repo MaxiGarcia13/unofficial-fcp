@@ -1,6 +1,7 @@
 import type { Step } from './types';
 import type { Player } from '@/types';
 import { useEffect, useMemo, useState } from 'react';
+import { useLocalStorage } from '@/hooks/use-local-storage';
 import { parseUrlNavigationState } from './url.utils';
 import { validateRounds } from './validation.utils';
 
@@ -10,14 +11,11 @@ interface UseLineupFormStateParams {
   teamName: string;
 }
 
-interface StoredLineupSnapshot {
-  rounds?: string;
-  players?: Player[];
-}
-
 export function useLineupFormState({ gender, group, teamName }: UseLineupFormStateParams) {
   const roundsKey = `fcp-lineup-rounds-${gender}-${group}-${teamName}`;
   const playersKey = `fcp-lineup-players-${gender}-${group}-${teamName}`;
+  const roundsStorage = useLocalStorage<string>(roundsKey);
+  const playersStorage = useLocalStorage<Player[]>(playersKey);
 
   const [rounds, setRounds] = useState<string>('');
   const [currentPlayersPage, setCurrentPlayersPage] = useState<number>(0);
@@ -28,34 +26,16 @@ export function useLineupFormState({ gender, group, teamName }: UseLineupFormSta
   useEffect(() => {
     setIsStorageHydrated(false);
 
-    const storedRounds = localStorage.getItem(roundsKey) ?? '';
-    const storedPlayersRaw = localStorage.getItem(playersKey);
-    let parsedStoredPlayers: Player[] = [];
-    let roundsFromLegacyPayload = '';
+    const storedRounds = roundsStorage.get() ?? '';
+    const storedPlayers = playersStorage.get() ?? [];
 
-    if (storedPlayersRaw) {
-      try {
-        const parsed = JSON.parse(storedPlayersRaw) as Player[] | StoredLineupSnapshot;
-        if (Array.isArray(parsed)) {
-          parsedStoredPlayers = parsed;
-        } else if (parsed && typeof parsed === 'object' && Array.isArray(parsed.players)) {
-          parsedStoredPlayers = parsed.players;
-          if (typeof parsed.rounds === 'string') {
-            roundsFromLegacyPayload = parsed.rounds;
-          }
-        }
-      } catch {
-        parsedStoredPlayers = [];
-      }
-    }
-
-    setPlayers(parsedStoredPlayers);
+    setPlayers(storedPlayers);
     const { page: pageFromUrl, step: stepFromUrl } = parseUrlNavigationState();
-    setRounds(storedRounds || roundsFromLegacyPayload);
+    setRounds(storedRounds);
     setCurrentPlayersPage(pageFromUrl);
     setCurrentStep(stepFromUrl);
     setIsStorageHydrated(true);
-  }, [roundsKey, playersKey]);
+  }, [playersStorage, roundsStorage]);
 
   useEffect(() => {
     if (!isStorageHydrated) {
@@ -94,7 +74,7 @@ export function useLineupFormState({ gender, group, teamName }: UseLineupFormSta
       setCurrentStep('rounds');
       setCurrentPlayersPage(0);
 
-      localStorage.setItem(roundsKey, value);
+      roundsStorage.set(value);
     },
     onNextStep: () => {
       setCurrentStep('players');
@@ -110,7 +90,7 @@ export function useLineupFormState({ gender, group, teamName }: UseLineupFormSta
           newPlayers[index] = player;
         }
 
-        localStorage.setItem(playersKey, JSON.stringify(newPlayers));
+        playersStorage.set(newPlayers);
         return newPlayers;
       });
     },

@@ -1,35 +1,19 @@
 import type { Gender } from '@/types';
 import { navigate } from 'astro:transitions/client';
 import { useState } from 'react';
+import { useLocalStorage } from '@/hooks/use-local-storage';
 import { CategoryGroupSelect } from '../category-select';
 import { GenderSwitch } from '../gender-switch';
 
 const FILTERS_STORAGE_KEY = 'unofficial-fcp.filters';
 const DEFAULT_GENDER: Gender = 'MASCULINO';
 
-function readStoredFilters() {
-  const rawValue = localStorage.getItem(FILTERS_STORAGE_KEY);
-  if (!rawValue) {
-    return null;
-  }
-
-  try {
-    const parsed = JSON.parse(rawValue);
-    if (!parsed) {
-      return null;
-    }
-
-    return { gender: parsed.gender, group: parsed.group };
-  } catch {
-    return null;
-  }
-}
-
 export function Filters(props: { gender?: Gender; group?: string }) {
   const initialGender = props.gender ?? DEFAULT_GENDER;
   const initialGroup = props.group ?? '';
+  const filtersStorage = useLocalStorage<{ gender: Gender; group: string }>(FILTERS_STORAGE_KEY);
 
-  const stored = readStoredFilters();
+  const stored = filtersStorage.get();
 
   const [gender, setGender] = useState<Gender>(stored?.gender ?? initialGender);
   const [group, setGroup] = useState(stored?.group ?? initialGroup);
@@ -47,25 +31,19 @@ export function Filters(props: { gender?: Gender; group?: string }) {
     setGender(value);
     setGroup('');
 
-    localStorage.setItem(
-      FILTERS_STORAGE_KEY,
-      JSON.stringify({
-        gender: value,
-        group: '',
-      }),
-    );
+    filtersStorage.set({
+      gender: value,
+      group: '',
+    });
   };
 
   const handleGroupChange = (value: string) => {
     setGroup(value);
 
-    localStorage.setItem(
-      FILTERS_STORAGE_KEY,
-      JSON.stringify({
-        gender,
-        group: value,
-      }),
-    );
+    filtersStorage.set({
+      gender,
+      group: value,
+    });
   };
 
   return (
