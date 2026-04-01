@@ -22,12 +22,14 @@
     "phoenix": "rm -rf dist && rm -rf .vercel && rm -rf .astro && rm -rf node_modules && rm -rf package-lock.json && npm cache clean -f && npm i && npm run build"
   },
   "dependencies": {
+    "@ai-sdk/groq": "^3.0.31",
     "@astrojs/react": "^5.0.2",
     "@astrojs/vercel": "^10.0.3",
+    "ai": "^6.0.142",
     "astro": "^6.1.2",
-    "openai": "^6.33.0",
     "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "react-dom": "^19.2.4",
+    "streamdown": "^2.5.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^7.7.3",
@@ -37,5 +39,7 @@
     "eslint-plugin-astro": "^1.6.0",
     "tailwindcss": "^4.2.2"
   },
-  "overrides": { "vite": "^7" }
+  "overrides": {
+    "vite": "^7"
+  }
 }
