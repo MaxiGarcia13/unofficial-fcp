@@ -33,6 +33,10 @@ export default defineConfig({
         context: 'client',
         access: 'public',
       }),
+      GROQ_API_KEY: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
     },
   },
 });
