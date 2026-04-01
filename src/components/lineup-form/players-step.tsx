@@ -47,13 +47,12 @@ export function PlayersStep({
       }),
     [gender, group, teamName],
   );
-
-  const basePlayers = [...(data?.players ?? [])].sort((first, second) => first.position - second.position);
-  const playersPageCount = Math.ceil(basePlayers.length / 3);
+  const players = data?.players ?? [];
+  const playersPageCount = Math.ceil(players.length / 3);
   const boundedPlayersPage = Math.max(0, Math.min(currentPlayersPage, Math.max(playersPageCount - 1, 0)));
   const isLastPage = boundedPlayersPage >= playersPageCount - 1;
   const playersSliceStart = boundedPlayersPage * 3;
-  const visiblePlayers = basePlayers.slice(playersSliceStart, playersSliceStart + 3)
+  const visiblePlayers = players.slice(playersSliceStart, playersSliceStart + 3)
     .map((basePlayer) => {
       const editedPlayer = editedPlayers.find(player => player.position === basePlayer.position);
       return editedPlayer ? { ...basePlayer, ...editedPlayer } : basePlayer;

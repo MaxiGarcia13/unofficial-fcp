@@ -1,7 +1,38 @@
 import type { Player } from '@/types';
+import { useEffect, useState } from 'react';
 
 export function GeneratedLineupLayer(props: { rounds: string; players: Player[] }) {
-  console.log({ ...props });
+  const [lineups, setLineups] = useState<string[]>([]);
+
+  const fetchLineups = async () => {
+    const response = await fetch('/api/ia', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'text/plain; charset=utf-8',
+      },
+      body: JSON.stringify({
+        rounds: props.rounds,
+        players: props.players,
+      }),
+    });
+
+    const reader = response.body?.getReader();
+
+    const decoder = new TextDecoder();
+    let result = '';
+    while (true) {
+      const { done, value } = await reader?.read();
+      if (done)
+        break;
+      result += decoder.decode(value, { stream: true });
+    }
+
+    setLineups(result.split('\n'));
+  };
+
+  useEffect(() => {
+    fetchLineups();
+  }, [props.rounds, props.players]);
 
   return (
     <section className="rounded border border-cantabria-border bg-cantabria-surface p-4">

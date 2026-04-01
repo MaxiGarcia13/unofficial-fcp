@@ -10,6 +10,11 @@ interface UseLineupFormStateParams {
   teamName: string;
 }
 
+interface StoredLineupSnapshot {
+  rounds?: string;
+  players?: Player[];
+}
+
 export function useLineupFormState({ gender, group, teamName }: UseLineupFormStateParams) {
   const roundsKey = `fcp-lineup-rounds-${gender}-${group}-${teamName}`;
   const playersKey = `fcp-lineup-players-${gender}-${group}-${teamName}`;
@@ -26,12 +31,18 @@ export function useLineupFormState({ gender, group, teamName }: UseLineupFormSta
     const storedRounds = localStorage.getItem(roundsKey) ?? '';
     const storedPlayersRaw = localStorage.getItem(playersKey);
     let parsedStoredPlayers: Player[] = [];
+    let roundsFromLegacyPayload = '';
 
     if (storedPlayersRaw) {
       try {
-        const parsed = JSON.parse(storedPlayersRaw) as Player[];
+        const parsed = JSON.parse(storedPlayersRaw) as Player[] | StoredLineupSnapshot;
         if (Array.isArray(parsed)) {
           parsedStoredPlayers = parsed;
+        } else if (parsed && typeof parsed === 'object' && Array.isArray(parsed.players)) {
+          parsedStoredPlayers = parsed.players;
+          if (typeof parsed.rounds === 'string') {
+            roundsFromLegacyPayload = parsed.rounds;
+          }
         }
       } catch {
         parsedStoredPlayers = [];
@@ -40,27 +51,11 @@ export function useLineupFormState({ gender, group, teamName }: UseLineupFormSta
 
     setPlayers(parsedStoredPlayers);
     const { page: pageFromUrl, step: stepFromUrl } = parseUrlNavigationState();
-    setRounds(storedRounds);
+    setRounds(storedRounds || roundsFromLegacyPayload);
     setCurrentPlayersPage(pageFromUrl);
     setCurrentStep(stepFromUrl);
     setIsStorageHydrated(true);
   }, [roundsKey, playersKey]);
-
-  useEffect(() => {
-    if (!isStorageHydrated) {
-      return;
-    }
-
-    localStorage.setItem(roundsKey, rounds);
-    const playersForStorage = players
-      .filter(player => player.side || player.status)
-      .map(player => ({
-        position: player.position,
-        side: player.side,
-        status: player.status,
-      }));
-    localStorage.setItem(playersKey, JSON.stringify(playersForStorage));
-  }, [isStorageHydrated, rounds, players, roundsKey, playersKey]);
 
   useEffect(() => {
     if (!isStorageHydrated) {
@@ -75,21 +70,6 @@ export function useLineupFormState({ gender, group, teamName }: UseLineupFormSta
 
     window.history.replaceState(null, '', nextUrl);
   }, [isStorageHydrated, currentPlayersPage, currentStep]);
-
-  const handlePlayerChange = useCallback((player: Player) => {
-    setPlayers((currentPlayers) => {
-      const index = currentPlayers.findIndex(p => p.position === player.position);
-      const newPlayers = [...currentPlayers];
-
-      if (index === -1) {
-        newPlayers.push(player);
-      } else {
-        newPlayers[index] = player;
-      }
-
-      return newPlayers;
-    });
-  }, []);
 
   const { values: roundValues, error: roundsError } = validateRounds(rounds);
   const hasValidRounds = rounds.trim().length > 0 && !roundsError;
@@ -112,11 +92,27 @@ export function useLineupFormState({ gender, group, teamName }: UseLineupFormSta
       setRounds(value);
       setCurrentStep('rounds');
       setCurrentPlayersPage(0);
+
+      localStorage.setItem(roundsKey, value);
     },
     onNextStep: () => {
       setCurrentStep('players');
     },
-    onPlayerChange: handlePlayerChange,
+    onPlayerChange: (player: Player) => {
+      setPlayers((currentPlayers) => {
+        const index = currentPlayers.findIndex(p => p.position === player.position);
+        const newPlayers = [...currentPlayers];
+
+        if (index === -1) {
+          newPlayers.push(player);
+        } else {
+          newPlayers[index] = player;
+        }
+
+        localStorage.setItem(playersKey, JSON.stringify(newPlayers));
+        return newPlayers;
+      });
+    },
     onPlayersPageChange: (nextPage: number) => {
       setCurrentPlayersPage(Math.max(nextPage, 0));
     },
