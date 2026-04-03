@@ -2,6 +2,8 @@ const ROUNDS_PATTERN = /^\d+(?:-\d+)*$/;
 
 export function validateRounds(value: string) {
   const trimmedValue = value.trim();
+  // eslint-disable-next-line e18e/prefer-static-regex
+  const normalizedValue = trimmedValue.replace(/\s*-\s*/g, '-');
 
   if (!trimmedValue) {
     return {
@@ -10,14 +12,14 @@ export function validateRounds(value: string) {
     };
   }
 
-  if (!ROUNDS_PATTERN.test(trimmedValue)) {
+  if (!ROUNDS_PATTERN.test(normalizedValue)) {
     return {
       values: [] as number[],
       error: 'Usa solo numeros separados por "-" (ej: 2-3).',
     };
   }
 
-  const values = trimmedValue.split('-').map(Number);
+  const values = normalizedValue.split('-').map(Number);
 
   if (values.some(round => round <= 0)) {
     return {
