@@ -1,6 +1,6 @@
 import type { Step } from './types';
 import type { Player } from '@/types';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useLocalStorage } from '@/hooks/use-local-storage';
 import { parseUrlNavigationState } from './url.utils';
 import { validateRounds } from './validation.utils';
@@ -16,7 +16,6 @@ export function useLineupFormState({ gender, group, teamName }: UseLineupFormSta
   const playersKey = `fcp-lineup-players-${gender}-${group}-${teamName}`;
   const roundsStorage = useLocalStorage<string>(roundsKey);
   const playersStorage = useLocalStorage<Player[]>(playersKey);
-
   const [rounds, setRounds] = useState<string>('');
   const [currentPlayersPage, setCurrentPlayersPage] = useState<number>(0);
   const [currentStep, setCurrentStep] = useState<Step>('rounds');
@@ -35,7 +34,7 @@ export function useLineupFormState({ gender, group, teamName }: UseLineupFormSta
     setCurrentPlayersPage(pageFromUrl);
     setCurrentStep(stepFromUrl);
     setIsStorageHydrated(true);
-  }, [playersStorage, roundsStorage]);
+  }, [playersKey, roundsKey]);
 
   useEffect(() => {
     if (!isStorageHydrated) {
@@ -57,6 +56,9 @@ export function useLineupFormState({ gender, group, teamName }: UseLineupFormSta
     value: `tanda-${index + 1}` as const,
     label: `Tanda ${index + 1}`,
   })), [roundValues]);
+  const onPlayersPageChange = useCallback((nextPage: number) => {
+    setCurrentPlayersPage(Math.max(nextPage, 0));
+  }, []);
 
   return {
     rounds,
@@ -94,9 +96,7 @@ export function useLineupFormState({ gender, group, teamName }: UseLineupFormSta
         return newPlayers;
       });
     },
-    onPlayersPageChange: (nextPage: number) => {
-      setCurrentPlayersPage(Math.max(nextPage, 0));
-    },
+    onPlayersPageChange,
     onSeeSummary: () => {
       setCurrentStep('summary');
     },
