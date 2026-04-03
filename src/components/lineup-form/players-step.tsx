@@ -137,7 +137,6 @@ export function PlayersStep({
         <button
           type="button"
           className="rounded border border-cantabria-border bg-cantabria-surface px-4 py-2 text-sm font-medium text-cantabria-text disabled:cursor-not-allowed disabled:opacity-50"
-          disabled={playersPageCount === 0}
           onClick={boundedPlayersPage === 0
             ? onBackToRounds
             : () => onPlayersPageChange(boundedPlayersPage - 1)}
