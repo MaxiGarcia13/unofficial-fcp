@@ -4,4 +4,5 @@ export default eslintConfig({
   astro: true,
   react: true,
   typescript: true,
+  tailwindcss: true,
 });
