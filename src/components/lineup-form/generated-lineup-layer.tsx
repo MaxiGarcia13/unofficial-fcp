@@ -74,11 +74,11 @@ export function GeneratedLineupLayer(props: { rounds: string; players: Player[] 
   }, [props.rounds, props.players]);
 
   return (
-    <section className="rounded border border-cantabria-border bg-cantabria-surface p-4">
+    <section className="border-cantabria-border bg-cantabria-surface rounded border p-4">
       <div className="flex flex-col gap-1">
-        <span className="text-xs font-medium uppercase tracking-wide text-cantabria-muted">Paso 4 de 4</span>
-        <h3 className="text-sm font-medium text-cantabria-text">Alineación generada</h3>
-        <p className="text-sm text-cantabria-muted">
+        <span className="text-cantabria-muted text-xs font-medium tracking-wide uppercase">Paso 4 de 4</span>
+        <h3 className="text-cantabria-text text-sm font-medium">Alineación generada</h3>
+        <p className="text-cantabria-muted text-sm">
           Se ha generado una nueva capa con la alineación para continuar con la siguiente acción.
         </p>
 

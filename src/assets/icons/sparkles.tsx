@@ -11,7 +11,7 @@ export function SparklesIcon({ className }: { className?: string } & SVGProps<SV
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth="2"
-      className={className ?? 'w-6 h-6'}
+      className={className ?? 'h-6 w-6'}
       viewBox="0 0 24 24"
     >
       <path fill="none" stroke="none" d="M0 0h24v24H0z" />

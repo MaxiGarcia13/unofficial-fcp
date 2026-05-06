@@ -83,18 +83,18 @@ export function PlayersStep({
   }
 
   return (
-    <section className="rounded border border-cantabria-border bg-cantabria-surface p-4">
+    <section className="border-cantabria-border bg-cantabria-surface rounded border p-4">
       <div className="mb-4 flex flex-col gap-1">
-        <span className="text-xs font-medium uppercase tracking-wide text-cantabria-muted">Paso 2 de 3</span>
-        <h3 className="text-sm font-medium text-cantabria-text">Completar jugadores</h3>
-        <p className="text-sm text-cantabria-muted">
+        <span className="text-cantabria-muted text-xs font-medium tracking-wide uppercase">Paso 2 de 3</span>
+        <h3 className="text-cantabria-text text-sm font-medium">Completar jugadores</h3>
+        <p className="text-cantabria-muted text-sm">
           Completa la información de los jugadores en bloques de 3 y avanza hasta terminar la plantilla.
         </p>
       </div>
 
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-medium text-cantabria-text">Jugadores</h3>
-        <span className="text-sm text-cantabria-muted">
+        <h3 className="text-cantabria-text text-sm font-medium">Jugadores</h3>
+        <span className="text-cantabria-muted text-sm">
           {`Bloque ${boundedPlayersPage + 1} de ${Math.max(playersPageCount, 1)}`}
         </span>
       </div>
@@ -102,7 +102,7 @@ export function PlayersStep({
       <ul className="mt-4 flex flex-col gap-4">
         {visiblePlayers.map((player) => (
           <li key={`${player.name} ${player.surname}`} className="flex flex-col gap-2">
-            <span className="text-sm text-cantabria-text">
+            <span className="text-cantabria-text text-sm">
               {`${player.position} - `}
               {`${player.name} ${player.surname}`}
             </span>
@@ -136,7 +136,7 @@ export function PlayersStep({
       <div className="mt-4 flex items-center justify-between gap-3">
         <button
           type="button"
-          className="rounded border border-cantabria-border bg-cantabria-surface px-4 py-2 text-sm font-medium text-cantabria-text disabled:cursor-not-allowed disabled:opacity-50"
+          className="border-cantabria-border bg-cantabria-surface text-cantabria-text rounded border px-4 py-2 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-50"
           onClick={boundedPlayersPage === 0
             ? onBackToRounds
             : () => onPlayersPageChange(boundedPlayersPage - 1)}
@@ -146,7 +146,7 @@ export function PlayersStep({
 
         <button
           type="button"
-          className="rounded border border-cantabria-border bg-cantabria-surface px-4 py-2 text-sm font-medium text-cantabria-text disabled:cursor-not-allowed disabled:opacity-50"
+          className="border-cantabria-border bg-cantabria-surface text-cantabria-text rounded border px-4 py-2 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-50"
           disabled={!isLastPage && boundedPlayersPage >= playersPageCount - 1}
           onClick={isLastPage ? onSeeSummary : () => onPlayersPageChange(boundedPlayersPage + 1)}
         >

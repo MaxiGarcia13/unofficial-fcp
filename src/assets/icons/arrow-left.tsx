@@ -12,7 +12,7 @@ export function ArrowLeftIcon({ className }: { className?: string } & SVGProps<S
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className={className ?? 'w-6 h-6'}
+      className={className ?? 'h-6 w-6'}
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path d="M5 12l14 0" />

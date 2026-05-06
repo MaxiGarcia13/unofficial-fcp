@@ -12,14 +12,14 @@ export function Field({ label, children, id, error, ...props }: FieldProps) {
       {
         label
         && (
-          <label htmlFor={id} className="mb-2 block text-sm font-medium text-cantabria-text">
+          <label htmlFor={id} className="text-cantabria-text mb-2 block text-sm font-medium">
             {label}
           </label>
         )
       }
       {children}
 
-      {error && <p className="text-sm text-cantabria-red mt-1">{error}</p>}
+      {error && <p className="text-cantabria-red mt-1 text-sm">{error}</p>}
     </div>
   );
 }

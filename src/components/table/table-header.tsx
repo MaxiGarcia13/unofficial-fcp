@@ -10,7 +10,7 @@ export function TableHeader<T extends Record<string, any>>({
 }: TableHeaderProps<T>) {
   return (
     <thead>
-      <tr className="sticky top-0 z-10 border-b border-cantabria-border bg-cantabria-dark-muted shadow-[0_1px_0_0_rgba(0,0,0,0.1)]">
+      <tr className="border-cantabria-border bg-cantabria-dark-muted sticky top-0 z-10 border-b shadow-[0_1px_0_0_rgba(0,0,0,0.1)]">
         {columns.map((col) => {
           return (
             <th

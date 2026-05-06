@@ -24,16 +24,16 @@ const {
 ---
 
 <GroupInfoLayout gender={gender} group={group}>
-  <div class="flex flex-wrap justify-between items-center gap-3">
-    <div class="flex gap-3 flex-wrap items-center">
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <div class="flex flex-wrap items-center gap-3">
       <a
         href={backUrl}
-        class="inline-flex items-center gap-2 rounded-lg border cursor-pointer border-cantabria-border bg-cantabria-surface px-3 py-2.5 text-sm font-medium text-cantabria-text transition-colors duration-150 hover:border-cantabria-red hover:bg-cantabria-surface-secondary active:bg-cantabria-dark-muted/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-cantabria-red/40 focus-visible:ring-offset-2 focus-visible:ring-offset-cantabria-bg"
+        class="border-cantabria-border bg-cantabria-surface text-cantabria-text hover:border-cantabria-red hover:bg-cantabria-surface-secondary active:bg-cantabria-dark-muted/50 focus-visible:ring-cantabria-red/40 focus-visible:ring-offset-cantabria-bg inline-flex cursor-pointer items-center gap-2 rounded-lg border px-3 py-2.5 text-sm font-medium transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
       >
-        <ArrowLeftIcon className="w-4 h-4" />
+        <ArrowLeftIcon className="h-4 w-4" />
       </a>
 
-      <h2 class="text-md md:text-xl font-semibold text-cantabria-text">
+      <h2 class="text-md text-cantabria-text font-semibold md:text-xl">
         {title}
       </h2>
     </div>
@@ -41,9 +41,9 @@ const {
       showGenerateAlignment && (
         <a
           href={`/${gender}-${group}/${teamName}/lineup`}
-          class="shrink-0 cursor-pointer rounded-lg flex items-center gap-2 bg-cantabria-red px-5 py-2.5 text-sm font-medium text-white transition-colors duration-150 hover:bg-red-700 active:bg-red-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-cantabria-red focus-visible:ring-offset-2 focus-visible:ring-offset-cantabria-surface sm:self-end"
+          class="bg-cantabria-red focus-visible:ring-cantabria-red focus-visible:ring-offset-cantabria-surface flex shrink-0 cursor-pointer items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-medium text-white transition-colors duration-150 hover:bg-red-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:bg-red-900 sm:self-end"
         >
-          <SparklesIcon className="w-4 h-4" />
+          <SparklesIcon className="h-4 w-4" />
           <span>Generar alineación</span>
         </a>
       )

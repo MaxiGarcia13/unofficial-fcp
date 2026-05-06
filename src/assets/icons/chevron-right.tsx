@@ -8,7 +8,7 @@ export function ChevronRightIcon({ className }: { className?: string } & SVGProp
       height="24"
       viewBox="0 0 24 24"
       fill="currentColor"
-      className={className ?? 'w-6 h-6'}
+      className={className ?? 'h-6 w-6'}
     >
       <path
         stroke="none"

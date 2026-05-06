@@ -16,11 +16,11 @@ export function RoundsStep({
   onNextStep,
 }: RoundsStepProps) {
   return (
-    <section className="rounded border border-cantabria-border bg-cantabria-surface p-4">
+    <section className="border-cantabria-border bg-cantabria-surface rounded border p-4">
       <div className="mb-4 flex flex-col gap-1">
-        <span className="text-xs font-medium uppercase tracking-wide text-cantabria-muted">Paso 1 de 3</span>
-        <h3 className="text-sm font-medium text-cantabria-text">Configurar tandas</h3>
-        <p className="text-sm text-cantabria-muted">
+        <span className="text-cantabria-muted text-xs font-medium tracking-wide uppercase">Paso 1 de 3</span>
+        <h3 className="text-cantabria-text text-sm font-medium">Configurar tandas</h3>
+        <p className="text-cantabria-muted text-sm">
           Escribe las tandas separadas por guiones (ejemplo: 2-3). La suma total no puede superar 5.
         </p>
       </div>
@@ -38,7 +38,7 @@ export function RoundsStep({
 
         <button
           type="button"
-          className="self-start rounded border border-cantabria-border bg-cantabria-surface px-4 py-2 text-sm font-medium text-cantabria-text disabled:cursor-not-allowed disabled:opacity-50"
+          className="border-cantabria-border bg-cantabria-surface text-cantabria-text self-start rounded border px-4 py-2 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-50"
           disabled={!hasValidRounds}
           onClick={onNextStep}
         >

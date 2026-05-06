@@ -9,7 +9,7 @@ export function TableErrorRow({ colSpan, message, onRetry }: TableErrorRowProps)
     <tr>
       <td
         colSpan={colSpan}
-        className="px-4 py-8 text-center text-cantabria-muted"
+        className="text-cantabria-muted px-4 py-8 text-center"
       >
         <div className="flex flex-col items-center gap-2">
           <span>{message}</span>
@@ -17,7 +17,7 @@ export function TableErrorRow({ colSpan, message, onRetry }: TableErrorRowProps)
             <button
               type="button"
               onClick={onRetry}
-              className="w-fit rounded-lg border border-cantabria-border bg-cantabria-surface px-3 py-1.5 text-sm font-medium text-cantabria-red transition-colors duration-150 hover:border-cantabria-red hover:bg-cantabria-surface-secondary hover:text-red-300 active:bg-cantabria-dark-muted/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-cantabria-red/50 focus-visible:ring-offset-2 focus-visible:ring-offset-cantabria-surface"
+              className="border-cantabria-border bg-cantabria-surface text-cantabria-red hover:border-cantabria-red hover:bg-cantabria-surface-secondary active:bg-cantabria-dark-muted/50 focus-visible:ring-cantabria-red/50 focus-visible:ring-offset-cantabria-surface w-fit rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors duration-150 hover:text-red-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
             >
               Reintentar
             </button>

@@ -78,13 +78,13 @@ export function TeamStatsCompare({
   );
 
   return (
-    <section className="flex flex-col gap-4 mt-6">
+    <section className="mt-6 flex flex-col gap-4">
       <div className="flex flex-col gap-3">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-cantabria-text">
+          <h2 className="text-cantabria-text text-lg font-semibold">
             Mejores 5 jugadores
           </h2>
-          <span className="text-sm text-cantabria-muted">{playersComparison}</span>
+          <span className="text-cantabria-muted text-sm">{playersComparison}</span>
         </div>
 
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
@@ -118,10 +118,10 @@ export function TeamStatsCompare({
 
       <div className="flex flex-col gap-3">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-cantabria-text">
+          <h2 className="text-cantabria-text text-lg font-semibold">
             Mejores 5 parejas
           </h2>
-          <span className="text-sm text-cantabria-muted">{couplesComparison}</span>
+          <span className="text-cantabria-muted text-sm">{couplesComparison}</span>
         </div>
 
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">

@@ -32,7 +32,7 @@ export function TeamStats({
   return (
     <section className="mt-6 flex flex-col gap-6">
       <div>
-        <h2 className="mb-3 text-lg font-semibold text-cantabria-text">
+        <h2 className="text-cantabria-text mb-3 text-lg font-semibold">
           Mejores jugadores
         </h2>
 
@@ -50,7 +50,7 @@ export function TeamStats({
       </div>
 
       <div>
-        <h2 className="mb-3 text-lg font-semibold text-cantabria-text">
+        <h2 className="text-cantabria-text mb-3 text-lg font-semibold">
           Mejores parejas
         </h2>
 

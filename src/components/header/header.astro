@@ -34,7 +34,7 @@ const selectedGroup = group?.length ? group : 'Sin grupo';
   transition:name="header"
 >
   <div class="flex flex-col gap-6">
-    <div class="flex gap-4 items-center">
+    <div class="flex items-center gap-4">
       <a href="/">
         <img
           src="/favicon.png"
@@ -45,7 +45,7 @@ const selectedGroup = group?.length ? group : 'Sin grupo';
         />
       </a>
       <h1
-        class="max-w-2xl flex-1 text-balance text-2xl font-bold tracking-tight text-cantabria-text sm:text-3xl"
+        class="text-cantabria-text max-w-2xl flex-1 text-2xl font-bold tracking-tight text-balance sm:text-3xl"
       >
         Pádel Cantabria
       </h1>
@@ -53,7 +53,7 @@ const selectedGroup = group?.length ? group : 'Sin grupo';
         showFiltersToggle && (
           <button
             type="button"
-            class="rounded-lg border cursor-pointer border-cantabria-border p-2 text-cantabria-text transition-colors duration-150 hover:border-cantabria-muted hover:bg-cantabria-surface-secondary active:bg-cantabria-dark-muted/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-cantabria-red/50 focus-visible:ring-offset-2 focus-visible:ring-offset-cantabria-surface"
+            class="border-cantabria-border text-cantabria-text hover:border-cantabria-muted hover:bg-cantabria-surface-secondary active:bg-cantabria-dark-muted/60 focus-visible:ring-cantabria-red/50 focus-visible:ring-offset-cantabria-surface cursor-pointer rounded-lg border p-2 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
             aria-controls={filtersPanelId}
             aria-expanded={filtersInitiallyOpen ? 'true' : 'false'}
             aria-label={
@@ -79,7 +79,7 @@ const selectedGroup = group?.length ? group : 'Sin grupo';
     >
       {selectedGender}
 
-      <ChevronRightIcon className="w-4 h-4" />
+      <ChevronRightIcon className="h-4 w-4" />
 
       {selectedGroup}
     </div>

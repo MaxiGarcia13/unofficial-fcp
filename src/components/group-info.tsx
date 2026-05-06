@@ -33,9 +33,9 @@ export function GroupInfo({ gender, group }: { gender: Gender; group: string }) 
   const calendar = data?.calendarMatches;
 
   return (
-    <div className="flex min-w-0 w-full flex-col gap-8">
+    <div className="flex w-full min-w-0 flex-col gap-8">
       <section>
-        <h2 className="mb-3 w-full text-lg font-semibold text-cantabria-text">
+        <h2 className="text-cantabria-text mb-3 w-full text-lg font-semibold">
           Tabla de posiciones
         </h2>
 
@@ -59,7 +59,7 @@ export function GroupInfo({ gender, group }: { gender: Gender; group: string }) 
 
       {!loading && !error && calendar && (
         <section>
-          <h2 className="mb-3 text-lg font-semibold text-cantabria-text">
+          <h2 className="text-cantabria-text mb-3 text-lg font-semibold">
             Calendario
           </h2>
 

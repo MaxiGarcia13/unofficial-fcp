@@ -12,23 +12,23 @@ export function SummaryStep({ rounds, players, onBackToPlayers, onGenerateLineup
   const configuredPlayers = players.filter((player) => player.side || player.status);
 
   return (
-    <section className="rounded border border-cantabria-border bg-cantabria-surface p-4">
+    <section className="border-cantabria-border bg-cantabria-surface rounded border p-4">
       <div className="mb-4 flex flex-col gap-1">
-        <span className="text-xs font-medium uppercase tracking-wide text-cantabria-muted">Paso 3 de 4</span>
-        <h3 className="text-sm font-medium text-cantabria-text">Resumen de configuración</h3>
-        <p className="text-sm text-cantabria-muted">
+        <span className="text-cantabria-muted text-xs font-medium tracking-wide uppercase">Paso 3 de 4</span>
+        <h3 className="text-cantabria-text text-sm font-medium">Resumen de configuración</h3>
+        <p className="text-cantabria-muted text-sm">
           Revisa las tandas y la configuración de todos los jugadores antes de continuar.
         </p>
       </div>
 
-      <div className="mb-4 rounded border border-cantabria-border p-3">
-        <span className="text-xs uppercase tracking-wide text-cantabria-muted">Tandas</span>
-        <p className="mt-1 text-sm font-medium text-cantabria-text">{rounds}</p>
+      <div className="border-cantabria-border mb-4 rounded border p-3">
+        <span className="text-cantabria-muted text-xs tracking-wide uppercase">Tandas</span>
+        <p className="text-cantabria-text mt-1 text-sm font-medium">{rounds}</p>
       </div>
 
       <ul className="flex flex-col gap-2">
         {configuredPlayers.map((player) => (
-          <li key={player.position} className="rounded border border-cantabria-border p-3 text-sm text-cantabria-text">
+          <li key={player.position} className="border-cantabria-border text-cantabria-text rounded border p-3 text-sm">
             <span className="font-medium">{`${player.position} - ${player.name} ${player.surname}`}</span>
             <p className="text-cantabria-muted">
               {`Posición: ${player.side ?? '-'} | Estado: ${player.status ?? '-'}`}
@@ -40,7 +40,7 @@ export function SummaryStep({ rounds, players, onBackToPlayers, onGenerateLineup
       <div className="mt-4 flex items-center justify-between gap-3">
         <button
           type="button"
-          className="rounded border border-cantabria-border bg-cantabria-surface px-4 py-2 text-sm font-medium text-cantabria-text"
+          className="border-cantabria-border bg-cantabria-surface text-cantabria-text rounded border px-4 py-2 text-sm font-medium"
           onClick={onBackToPlayers}
         >
           Volver a jugadores
@@ -48,10 +48,10 @@ export function SummaryStep({ rounds, players, onBackToPlayers, onGenerateLineup
 
         <button
           type="button"
-          className="rounded border flex items-center gap-2 border-cantabria-red bg-cantabria-red px-4 py-2 text-sm font-medium text-white hover:border-red-700 hover:bg-red-700"
+          className="border-cantabria-red bg-cantabria-red flex items-center gap-2 rounded border px-4 py-2 text-sm font-medium text-white hover:border-red-700 hover:bg-red-700"
           onClick={onGenerateLineup}
         >
-          <SparklesIcon className="w-4 h-4" />
+          <SparklesIcon className="h-4 w-4" />
           Generar alineación
         </button>
       </div>

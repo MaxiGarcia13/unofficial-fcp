@@ -68,7 +68,7 @@ export function Select({
           ))}
         </select>
         <span
-          className="pointer-events-none absolute inset-y-0 right-0 flex w-10 items-center justify-center text-cantabria-muted group-focus-within:text-cantabria-red"
+          className="text-cantabria-muted group-focus-within:text-cantabria-red pointer-events-none absolute inset-y-0 right-0 flex w-10 items-center justify-center"
           aria-hidden
         >
           <ChevronIcon />

@@ -5,15 +5,15 @@ interface PlayersStepErrorProps {
 
 export function PlayersStepError({ message, onRetry }: PlayersStepErrorProps) {
   return (
-    <section className="rounded border border-cantabria-border bg-cantabria-surface p-4">
+    <section className="border-cantabria-border bg-cantabria-surface rounded border p-4">
       <div className="flex flex-col gap-3">
-        <p className="text-sm text-cantabria-text">
+        <p className="text-cantabria-text text-sm">
           No se pudo cargar la información de jugadores.
         </p>
-        <p className="text-sm text-cantabria-muted">{message}</p>
+        <p className="text-cantabria-muted text-sm">{message}</p>
         <button
           type="button"
-          className="self-start rounded border border-cantabria-border bg-cantabria-surface px-4 py-2 text-sm font-medium text-cantabria-text"
+          className="border-cantabria-border bg-cantabria-surface text-cantabria-text self-start rounded border px-4 py-2 text-sm font-medium"
           onClick={onRetry}
         >
           Reintentar

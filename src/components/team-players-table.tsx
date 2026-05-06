@@ -91,7 +91,7 @@ export function TeamPlayersTable({
   return (
     <div className="h-full w-full">
       <Table<Player>
-        className="w-full h-full"
+        className="h-full w-full"
         columns={variant === 'compare' ? comparePlayerColumns : playerColumns}
         data={players}
         loading={loading}
@@ -102,10 +102,10 @@ export function TeamPlayersTable({
         getRowKey={(row) => `${row.position}-${row.name}-${row.surname}`}
       />
       {!loading && !error && players.length > 0 && (
-        <div className="mt-3 flex justify-end text-sm gap-1">
+        <div className="mt-3 flex justify-end gap-1 text-sm">
           <span className="text-cantabria-muted">Total:</span>
 
-          <span className="font-semibold text-cantabria-text">
+          <span className="text-cantabria-text font-semibold">
             {totalPoints}
             {' '}
             pts.

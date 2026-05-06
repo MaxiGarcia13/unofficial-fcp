@@ -5,4 +5,7 @@ export default eslintConfig({
   react: true,
   typescript: true,
   tailwindcss: true,
+  rules: {
+    'tailwindcss/no-custom-classname': ['off'],
+  },
 });

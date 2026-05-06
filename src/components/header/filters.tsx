@@ -73,7 +73,7 @@ export function Filters(props: { gender?: Gender; group?: string }) {
 
       <button
         type="submit"
-        className="shrink-0 cursor-pointer rounded-lg bg-cantabria-red px-5 py-2.5 text-sm font-medium text-white transition-colors duration-150 hover:bg-red-700 active:bg-red-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-cantabria-red focus-visible:ring-offset-2 focus-visible:ring-offset-cantabria-surface sm:self-end"
+        className="bg-cantabria-red focus-visible:ring-cantabria-red focus-visible:ring-offset-cantabria-surface shrink-0 cursor-pointer rounded-lg px-5 py-2.5 text-sm font-medium text-white transition-colors duration-150 hover:bg-red-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:bg-red-900 sm:self-end"
       >
         Buscar
       </button>
