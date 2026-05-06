@@ -70,7 +70,7 @@ export function TeamPlayersTable({
     if (variant === 'compare') {
       return players.map((player) => {
         const name = player.name.split(' ')[0];
-        const surname = player.surname.split(' ').map(word => word.charAt(0)).join('.');
+        const surname = player.surname.split(' ').map((word) => word.charAt(0)).join('.');
 
         return ({
           ...player,
@@ -99,7 +99,7 @@ export function TeamPlayersTable({
         onRetry={fetchResult}
         emptyMessage="Sin jugadores para este equipo"
         fillHeight={false}
-        getRowKey={row => `${row.position}-${row.name}-${row.surname}`}
+        getRowKey={(row) => `${row.position}-${row.name}-${row.surname}`}
       />
       {!loading && !error && players.length > 0 && (
         <div className="mt-3 flex justify-end text-sm gap-1">

@@ -28,7 +28,7 @@ function didTargetTeamWinRound(score: string, isLocalMatch: boolean): boolean {
   let targetSets = 0;
   let rivalSets = 0;
 
-  const sets = score.split(' ').map(setScore => setScore.trim()).filter(Boolean);
+  const sets = score.split(' ').map((setScore) => setScore.trim()).filter(Boolean);
 
   for (const setScore of sets) {
     const parsedSet = parseSetScore(setScore);
@@ -56,7 +56,7 @@ function didTargetTeamWinRound(score: string, isLocalMatch: boolean): boolean {
 }
 
 function normalizePlayers(players: string[]): string[] {
-  return players.map(player => player.trim()).filter(Boolean);
+  return players.map((player) => player.trim()).filter(Boolean);
 }
 
 function extractCouple(round: { players: string[] }): string[] {
@@ -75,7 +75,7 @@ interface RankingCounter {
 function updateCounter(
   rankingMap: Map<string, RankingCounter>,
   key: string,
-  didWin: boolean
+  didWin: boolean,
 ) {
   const current = rankingMap.get(key) ?? { wonGames: 0, lostGames: 0 };
 
@@ -95,10 +95,10 @@ function sortRanking(rankingMap: Map<string, RankingCounter>): RankingEntry[] {
       const bBalance = b[1].wonGames - b[1].lostGames;
 
       return (
-        bBalance - aBalance ||
-        b[1].wonGames - a[1].wonGames ||
-        a[1].lostGames - b[1].lostGames ||
-        a[0].localeCompare(b[0])
+        bBalance - aBalance
+        || b[1].wonGames - a[1].wonGames
+        || a[1].lostGames - b[1].lostGames
+        || a[0].localeCompare(b[0])
       );
     })
     .map(([name, counters]) => ({ name, ...counters }));

@@ -83,7 +83,7 @@ export function useLineupFormState({ gender, group, teamName }: UseLineupFormSta
     },
     onPlayerChange: (player: Player) => {
       setPlayers((currentPlayers) => {
-        const index = currentPlayers.findIndex(p => p.position === player.position);
+        const index = currentPlayers.findIndex((p) => p.position === player.position);
         const newPlayers = [...currentPlayers];
 
         if (index === -1) {

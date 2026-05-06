@@ -56,7 +56,7 @@ export function PlayersStep({
   const playersSliceStart = boundedPlayersPage * 3;
   const visiblePlayers = players.slice(playersSliceStart, playersSliceStart + 3)
     .map((basePlayer) => {
-      const editedPlayer = editedPlayers.find(player => player.position === basePlayer.position);
+      const editedPlayer = editedPlayers.find((player) => player.position === basePlayer.position);
       return editedPlayer ? { ...basePlayer, ...editedPlayer } : basePlayer;
     });
 
@@ -100,7 +100,7 @@ export function PlayersStep({
       </div>
 
       <ul className="mt-4 flex flex-col gap-4">
-        {visiblePlayers.map(player => (
+        {visiblePlayers.map((player) => (
           <li key={`${player.name} ${player.surname}`} className="flex flex-col gap-2">
             <span className="text-sm text-cantabria-text">
               {`${player.position} - `}
@@ -111,7 +111,7 @@ export function PlayersStep({
               name={`side-${player.position}`}
               label="Posición"
               value={player.side}
-              onChange={value => onPlayerChange({ ...player, side: value })}
+              onChange={(value) => onPlayerChange({ ...player, side: value })}
               options={[
                 { value: 'left', label: 'Izquierda' },
                 { value: 'right', label: 'Derecha' },
@@ -122,7 +122,7 @@ export function PlayersStep({
               name={`status-${player.position}`}
               label="Estado"
               value={player.status}
-              onChange={value => onPlayerChange({ ...player, status: value as Player['status'] })}
+              onChange={(value) => onPlayerChange({ ...player, status: value as Player['status'] })}
               options={[
                 { value: 'present', label: 'Presente' },
                 { value: 'absent', label: 'Ausente' },

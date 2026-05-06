@@ -2,7 +2,7 @@ const ROUNDS_PATTERN = /^\d+(?:-\d+)*$/;
 
 export function validateRounds(value: string) {
   const trimmedValue = value.trim();
-  // eslint-disable-next-line e18e/prefer-static-regex
+
   const normalizedValue = trimmedValue.replace(/\s*-\s*/g, '-');
 
   if (!trimmedValue) {
@@ -21,7 +21,7 @@ export function validateRounds(value: string) {
 
   const values = normalizedValue.split('-').map(Number);
 
-  if (values.some(round => round <= 0)) {
+  if (values.some((round) => round <= 0)) {
     return {
       values: [] as number[],
       error: 'Cada tanda debe ser mayor que 0.',

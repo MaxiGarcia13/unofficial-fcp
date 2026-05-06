@@ -9,7 +9,7 @@ interface SummaryStepProps {
 }
 
 export function SummaryStep({ rounds, players, onBackToPlayers, onGenerateLineup }: SummaryStepProps) {
-  const configuredPlayers = players.filter(player => player.side || player.status);
+  const configuredPlayers = players.filter((player) => player.side || player.status);
 
   return (
     <section className="rounded border border-cantabria-border bg-cantabria-surface p-4">
@@ -27,7 +27,7 @@ export function SummaryStep({ rounds, players, onBackToPlayers, onGenerateLineup
       </div>
 
       <ul className="flex flex-col gap-2">
-        {configuredPlayers.map(player => (
+        {configuredPlayers.map((player) => (
           <li key={player.position} className="rounded border border-cantabria-border p-3 text-sm text-cantabria-text">
             <span className="font-medium">{`${player.position} - ${player.name} ${player.surname}`}</span>
             <p className="text-cantabria-muted">

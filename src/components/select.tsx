@@ -40,7 +40,8 @@ export function Select({
   onChange,
   ...props
 }: SelectProps) {
-  const selectId = id || name || useId();
+  const componentId = useId();
+  const selectId = id || name || componentId;
 
   return (
     <Field label={label} id={selectId} className={cn('group min-w-0', className)}>
@@ -57,10 +58,10 @@ export function Select({
             'disabled:cursor-not-allowed disabled:opacity-50',
           )}
           value={value}
-          onChange={e => onChange?.(e.target.value)}
+          onChange={(e) => onChange?.(e.target.value)}
           {...props}
         >
-          {options.map(option => (
+          {options.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>

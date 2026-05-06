@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { cn } from '@/utils/classes';
 import { Field } from './field';
 
@@ -29,7 +29,7 @@ export function Switch<TValue extends string = string>({
   if (options.length < 2)
     return null;
 
-  const activeIndex = options.findIndex(option => option.value === value);
+  const activeIndex = options.findIndex((option) => option.value === value);
 
   function activateOption(index: number) {
     const next = options[index];

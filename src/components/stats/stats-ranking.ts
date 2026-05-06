@@ -23,7 +23,7 @@ export const rankingColumns: TableColumn<RankingRow>[] = [
 ];
 
 export function withBalance(ranking: RankingEntry[]): RankingRow[] {
-  return (ranking ?? []).map(entry => ({
+  return (ranking ?? []).map((entry) => ({
     ...entry,
     balance: entry.wonGames - entry.lostGames,
   }));

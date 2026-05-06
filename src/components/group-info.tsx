@@ -48,7 +48,7 @@ export function GroupInfo({ gender, group }: { gender: Gender; group: string }) 
           onRetry={fetchResult}
           emptyMessage="Sin datos de clasificación"
           fillHeight={false}
-          getRowKey={row => `${row.position}-${row.team}`}
+          getRowKey={(row) => `${row.position}-${row.team}`}
           onRowClick={(row) => {
             navigate(`/${gender}-${group}/${row.team}`);
           }}

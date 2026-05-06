@@ -19,7 +19,8 @@ export function Input({
   error,
   ...props
 }: InputProps) {
-  const inputId = id || name || useId();
+  const componentId = useId();
+  const inputId = id || name || componentId;
 
   return (
     <Field label={label} id={inputId} className={cn('min-w-0', className)} error={error}>
@@ -35,7 +36,7 @@ export function Input({
           'disabled:cursor-not-allowed disabled:opacity-50',
         )}
         value={value}
-        onChange={e => onChange?.(e.target.value)}
+        onChange={(e) => onChange?.(e.target.value)}
         {...props}
       />
     </Field>

@@ -98,7 +98,7 @@ export function TeamStatsCompare({
             onRetry={team1.fetchResult}
             emptyMessage="Sin ranking de jugadores"
             fillHeight={false}
-            getRowKey={row => `${row.name}-players-team1`}
+            getRowKey={(row) => `${row.name}-players-team1`}
           />
 
           <Table<RankingRow>
@@ -110,7 +110,7 @@ export function TeamStatsCompare({
             onRetry={team2.fetchResult}
             emptyMessage="Sin ranking de jugadores"
             fillHeight={false}
-            getRowKey={row => `${row.name}-players-team2`}
+            getRowKey={(row) => `${row.name}-players-team2`}
           />
 
         </div>
@@ -135,7 +135,7 @@ export function TeamStatsCompare({
             onRetry={team1.fetchResult}
             emptyMessage="Sin ranking de parejas"
             fillHeight={false}
-            getRowKey={row => `${row.name}-couples-team1`}
+            getRowKey={(row) => `${row.name}-couples-team1`}
           />
 
           <Table<RankingRow>
@@ -147,7 +147,7 @@ export function TeamStatsCompare({
             onRetry={team2.fetchResult}
             emptyMessage="Sin ranking de parejas"
             fillHeight={false}
-            getRowKey={row => `${row.name}-couples-team2`}
+            getRowKey={(row) => `${row.name}-couples-team2`}
           />
         </div>
       </div>

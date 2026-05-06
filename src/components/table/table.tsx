@@ -60,7 +60,7 @@ export function Table<T extends Record<string, any>>({
                       key={rowIndex}
                       row={{ id: rowIndex } as unknown as T}
                       onRowClick={() => {}}
-                      columns={columns.map(col =>
+                      columns={columns.map((col) =>
                         ({
                           ...col,
                           render: (_value: any, _row: any) =>

@@ -10,7 +10,7 @@ export function PlayersStepSkeleton() {
       </div>
 
       <div className="space-y-4">
-        {[1, 2, 3].map(item => (
+        {[1, 2, 3].map((item) => (
           <div key={item} className="rounded border border-cantabria-border p-3">
             <Skeleton className="mb-3 h-4 w-48" />
             <Skeleton className="mb-2 h-9 w-full" />

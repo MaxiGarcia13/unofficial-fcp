@@ -45,7 +45,7 @@ export function TeamStats({
           onRetry={fetchResult}
           emptyMessage="Sin datos de ranking de jugadores"
           fillHeight={false}
-          getRowKey={row => `${row.name}-players`}
+          getRowKey={(row) => `${row.name}-players`}
         />
       </div>
 
@@ -63,7 +63,7 @@ export function TeamStats({
           onRetry={fetchResult}
           emptyMessage="Sin datos de ranking de parejas"
           fillHeight={false}
-          getRowKey={row => `${row.name}-couples`}
+          getRowKey={(row) => `${row.name}-couples`}
         />
       </div>
     </section>

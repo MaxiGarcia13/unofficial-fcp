@@ -61,7 +61,7 @@ export function GeneratedLineupLayer(props: { rounds: string; players: Player[] 
         break;
       const chunk = decoder.decode(value, { stream: true });
       fullResponse += chunk;
-      setLineups(prev => [...prev, chunk]);
+      setLineups((prev) => [...prev, chunk]);
     }
 
     if (fullResponse.trim()) {

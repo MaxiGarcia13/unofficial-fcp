@@ -54,9 +54,9 @@ const femeninCategoryOptions = [
 
 function categoryOptions(gender: Gender) {
   if (gender === 'MASCULINO') {
-    return masculinCategoryOptions.map(option => ({ value: option, label: option }));
+    return masculinCategoryOptions.map((option) => ({ value: option, label: option }));
   }
-  return femeninCategoryOptions.map(option => ({ value: option, label: option }));
+  return femeninCategoryOptions.map((option) => ({ value: option, label: option }));
 }
 
 /** Category / group picker — full width in filter rows; styles live in `Select`. */

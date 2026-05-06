@@ -1,10 +1,10 @@
 ---
-import type { Gender } from '@/types';
-import { ClientRouter } from 'astro:transitions';
-import { Footer } from '@/components/footer';
-import { APP_NAME, AUTHOR_NAME, BASE_IMAGE_URL } from '@/constants/global';
-import { cn } from '@/utils/classes';
-import '@/styles/global.css';
+import type { Gender } from "@/types";
+import { ClientRouter } from "astro:transitions";
+import { Footer } from "@/components/footer";
+import { APP_NAME, AUTHOR_NAME, BASE_IMAGE_URL } from "@/constants/global";
+import { cn } from "@/utils/classes";
+import "@/styles/global.css";
 
 interface Props {
   class?: string;
@@ -35,10 +35,10 @@ function getDescription() {
     return `Pádel Cantabria - Información de la categoría ${group} de ${gender.toLowerCase()}`;
   }
 
-  return 'Pádel Cantabria - mejora la Ui del sitio oficial de la Liga Cántabra de Pádel, fue creada con motivos educativos.';
+  return "Pádel Cantabria - mejora la Ui del sitio oficial de la Liga Cántabra de Pádel, fue creada con motivos educativos.";
 }
 
-const siteTitle = 'Pádel Cantabria';
+const siteTitle = "Pádel Cantabria";
 const description = getDescription();
 const canonicalUrl = Astro.url.href;
 const ogImageUrl = new URL(BASE_IMAGE_URL, Astro.url).toString();
@@ -81,7 +81,7 @@ const ogImageUrl = new URL(BASE_IMAGE_URL, Astro.url).toString();
   <body class="bg-cantabria-bg text-cantabria-text antialiased min-h-screen">
     <main
       class={cn(
-        'mx-auto flex min-h-screen max-w-4xl flex-col gap-6 px-4 py-8 sm:py-10',
+        "mx-auto flex min-h-screen max-w-4xl flex-col gap-6 px-4 py-8 sm:py-10",
         className,
       )}
     >
@@ -91,14 +91,13 @@ const ogImageUrl = new URL(BASE_IMAGE_URL, Astro.url).toString();
   </body>
 </html>
 <script>
-  const key = 'fcp-timestamp';
+  const key = "fcp-timestamp";
   const timestamp = localStorage.getItem(key);
+  const fiveMinutesAgo = new Date(timestamp).getTime() - 5 * 60 * 1000;
 
-  const wasMoreThan5MinutesSinceLastPing =
-    timestamp && new Date(timestamp).getTime() + 5 * 60 * 1000 < Date.now();
-
-  if (wasMoreThan5MinutesSinceLastPing) {
-    fetch('/api/ping-scrapper').finally(() => {
+  // Ping the scrapper every 5 minutes to keep it alive
+  if (timestamp && fiveMinutesAgo < Date.now()) {
+    fetch("/api/ping-scrapper").finally(() => {
       localStorage.setItem(key, new Date().toISOString());
     });
   }
