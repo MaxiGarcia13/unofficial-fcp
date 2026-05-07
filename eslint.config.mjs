@@ -1,11 +1,15 @@
 import { eslintConfig } from '@maxigarcia/eslint-config';
 
-export default eslintConfig({
-  astro: true,
-  react: true,
-  typescript: true,
-  tailwindcss: true,
-  rules: {
-    'tailwindcss/no-custom-classname': ['off'],
+export default eslintConfig(
+  {
+    astro: true,
+    react: true,
+    typescript: true,
+    tailwindcss: true,
   },
-});
+  {
+    rules: {
+      'tailwindcss/no-custom-classname': ['off'],
+    },
+  },
+);
